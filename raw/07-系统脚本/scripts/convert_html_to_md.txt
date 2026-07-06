@@ -1,0 +1,174 @@
+# HTML to Markdown Converter for WeChat Official Account Articles
+# Usage: Run this script to convert all .html files under raw/公众号 to .md files
+
+$rawRoot = "C:\wiki\73神话\raw\公众号"
+$totalConverted = 0
+$totalSkipped = 0
+$totalErrors = 0
+
+Write-Host "=====================================" -ForegroundColor Cyan
+Write-Host "  HTML -> MD Converter for WeChat OA" -ForegroundColor Cyan
+Write-Host "  Source: $rawRoot" -ForegroundColor Gray
+Write-Host "=====================================" -ForegroundColor Cyan
+
+function Convert-HtmlToMarkdown {
+    param([string]$HtmlContent, [string]$SourceFile)
+    
+    try {
+        # Extract <title>
+        $title = ""
+        if ($HtmlContent -match '<title>(.*?)</title>') {
+            $title = $Matches[1].Trim()
+            $title = $title -replace '&amp;', '&' -replace '&lt;', '<' -replace '&gt;', '>' -replace '&quot;', '"' -replace '&#39;', "'"
+        }
+        
+        # Extract source line
+        $source = ""
+        if ($HtmlContent -match '([^|]+)\s*\|\s*\d+\s*\|\s*https?://[^\s<]+') {
+            $source = $Matches[0].Trim()
+        }
+        
+        # Get body content
+        $body = ""
+        if ($HtmlContent -match '<body>(.*)</body>') {
+            $body = $Matches[1]
+        } else {
+            $body = $HtmlContent
+        }
+        
+        # Remove <script>, <style>, <svg> blocks
+        $body = $body -replace '<script[^>]*>.*?</script>', ''
+        $body = $body -replace '<style[^>]*>.*?</style>', ''
+        $body = $body -replace '<svg[^>]*>.*?</svg>', ''
+        
+        # Handle <img> tags -> Markdown images
+        $body = [regex]::Replace($body, '<img[^>]*src="([^"]+)"[^>]*/?>', { 
+            $src = $args[0].Groups[1].Value
+            return "`n![]($src)`n"
+        })
+        
+        # Handle <br> -> newline
+        $body = $body -replace '<br\s*/?>', "`n"
+        
+        # Handle <hr> -> ---
+        $body = $body -replace '<hr\s*/?>', "`n---`n"
+        
+        # Handle <p> and </p> -> newlines
+        $body = $body -replace '</p>', "`n`n"
+        $body = $body -replace '<p[^>]*>', "`n"
+        
+        # Handle <h1>-<h6>
+        for ($i = 6; $i -ge 1; $i--) {
+            $prefix = "#" * $i
+            $body = $body -replace "<h$i[^>]*>", "`n$prefix "
+            $body = $body -replace "</h$i>", "`n"
+        }
+        
+        # Handle <section> boundaries
+        $body = $body -replace '</section>', "`n"
+        $body = $body -replace '<section[^>]*>', "`n"
+        
+        # Handle <div>
+        $body = $body -replace '</div>', "`n"
+        $body = $body -replace '<div[^>]*>', "`n"
+        
+        # Handle <li>, <ul>, <ol>
+        $body = $body -replace '<li[^>]*>', "`n- "
+        $body = $body -replace '</li>', ''
+        $body = $body -replace '</?ul[^>]*>', "`n"
+        $body = $body -replace '</?ol[^>]*>', "`n"
+        
+        # Handle <strong>, <b>, <em>, <i> -> Markdown
+        $body = $body -replace '</?(?:strong|b)>', '**'
+        $body = $body -replace '</?(?:em|i)>', '*'
+        
+        # Handle <a> links
+        $body = [regex]::Replace($body, '<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', {
+            $href = $args[0].Groups[1].Value
+            $text = $args[0].Groups[2].Value -replace '<[^>]+>', ''
+            return "[$text]($href)"
+        })
+        
+        # Handle WeChat components - keep as placeholder comments
+        $body = $body -replace '<mp-common-profile[^>]*>.*?</mp-common-profile>', "`n<!-- wechat: profile -->`n"
+        $body = $body -replace '<mp-common-videosnap[^>]*>.*?</mp-common-videosnap>', "`n<!-- wechat: video -->`n"
+        $body = $body -replace '<mp-common-product[^>]*>.*?</mp-common-product>', "`n<!-- wechat: product -->`n"
+        
+        # Strip remaining HTML tags
+        $body = $body -replace '<[^>]+>', ' '
+        
+        # Decode HTML entities
+        $body = $body -replace '&amp;', '&'
+        $body = $body -replace '&lt;', '<'
+        $body = $body -replace '&gt;', '>'
+        $body = $body -replace '&quot;', '"'
+        $body = $body -replace '&#39;', "'"
+        $body = $body -replace '&nbsp;', ' '
+        
+        # Clean up excessive whitespace
+        $body = $body -replace '\r\n', "`n"
+        $body = $body -replace '\r', "`n"
+        $body = $body -replace '\n{4,}', "`n`n`n"
+        $body = $body -replace ' {2,}', ' '
+        $body = $body -replace '^\s+', ''
+        
+        # Build final Markdown
+        $md = @"
+---
+source: $source
+original: $SourceFile
+---
+
+# $title
+
+$body
+"@
+        
+        return $md.Trim()
+    }
+    catch {
+        Write-Host "  ERROR converting: $_" -ForegroundColor Red
+        return $null
+    }
+}
+
+# Process all subdirectories
+$dirs = Get-ChildItem -Path $rawRoot -Directory
+foreach ($dir in $dirs) {
+    $htmlFiles = Get-ChildItem -Path $dir.FullName -Filter "*.html"
+    if ($htmlFiles.Count -eq 0) { continue }
+    
+    Write-Host ""
+    Write-Host "[$($dir.Name)] $($htmlFiles.Count) files" -ForegroundColor Yellow
+    
+    foreach ($file in $htmlFiles) {
+        $mdPath = [System.IO.Path]::ChangeExtension($file.FullName, ".md")
+        
+        # Skip if .md already exists and is newer
+        if ((Test-Path $mdPath) -and (Get-Item $mdPath).LastWriteTime -ge $file.LastWriteTime) {
+            $totalSkipped++
+            continue
+        }
+        
+        $html = Get-Content -Path $file.FullName -Raw -Encoding UTF8
+        if (-not $html) { $totalErrors++; continue }
+        
+        $md = Convert-HtmlToMarkdown -HtmlContent $html -SourceFile $file.Name
+        if ($md) {
+            Set-Content -Path $mdPath -Value $md -Encoding UTF8
+            $totalConverted++
+            Write-Host "  + $($file.BaseName).md" -ForegroundColor Green
+        } else {
+            $totalErrors++
+            Write-Host "  X $($file.Name) FAILED" -ForegroundColor Red
+        }
+    }
+}
+
+Write-Host ""
+Write-Host "=====================================" -ForegroundColor Cyan
+Write-Host "  DONE" -ForegroundColor Green
+Write-Host "  Converted: $totalConverted" -ForegroundColor Green
+Write-Host "  Skipped:   $totalSkipped" -ForegroundColor Gray
+Write-Host "  Errors:    $totalErrors" -ForegroundColor Red
+Write-Host "=====================================" -ForegroundColor Cyan

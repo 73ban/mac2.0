@@ -1,0 +1,117 @@
+# 电机Ⅱ RAW增量骨架档案
+
+```yaml
+theme: 电机Ⅱ
+trade_date: 2026-06-24
+plan_trade_date: 2026-06-24
+evidence_trade_date: 2026-06-24
+generated_at: 2026-06-23 20:38:30
+first_seen_at: 2026-06-23 09:45:32
+last_updated: 2026-06-23 20:38:30
+change_type: auto-refresh
+theme_scope: specific
+signal_grade: C
+score: 0
+related_stocks: 1
+source_file_count: 1
+latest_catalyst_summary: ???????????? / 方正电机?????电机Ⅱ / ??????????
+```
+
+## 当前定位
+
+- 来源：RAW 首次或再次提到该题材后自动建档。
+- 当前等级：C
+- 当前状态：仅建骨架
+- 题材层级：可交易细分题材
+
+## 自动补卡状态
+
+- 首次建档：2026-06-23 09:45:32
+- 最近更新：2026-06-23 20:38:30
+- 本次变更：auto-refresh
+- 最新催化摘要：???????????? / 方正电机?????电机Ⅱ / ??????????
+
+## 题材理解
+
+- 待继续厚化：定义、产业链、受益方向、预期差、失效条件。
+
+## 关联个股
+
+- 002196 方正电机 | grade=C
+
+## 最近催化
+
+- ????????????
+- 方正电机?????电机Ⅱ
+- ??????????
+
+## AI细分
+
+- 暂无
+
+## 证据来源
+
+- .llm-wiki/limit-up-reasons/latest-limit-up-reasons.json
+
+## 制度化更新记录
+
+- 2026-06-23 20:38:30 | auto-refresh | signal=C | stocks=1; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????
+- 2026-06-23 13:03:09 | auto-refresh | signal=C | stocks=2; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????
+- 2026-06-23 10:50:28 | coverage-expanded | signal=C | stocks=2; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????
+- 2026-06-23 09:45:32 | auto-create | signal=C | stocks=1; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????
+
+<!-- 73WIKI:AUTO_META:START -->
+{
+  "kind": "theme",
+  "subject": "电机Ⅱ",
+  "firstSeenAt": "2026-06-23 09:45:32",
+  "lastUpdated": "2026-06-23 20:38:30",
+  "signalGrade": "C",
+  "changeType": "auto-refresh",
+  "latestCatalyst": "???????????? / 方正电机?????电机Ⅱ / ??????????",
+  "coverageSize": 1,
+  "sourceFiles": [
+    ".llm-wiki/limit-up-reasons/latest-limit-up-reasons.json"
+  ],
+  "sourceTags": [
+    "eastmoney-limit-up-pool-skeleton",
+    "watchlist:warroom",
+    "watchlist:normal",
+    "limit-up-reason"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-23 20:38:30",
+      "tradeDate": "2026-06-24",
+      "subject": "电机Ⅱ",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 13:03:09",
+      "tradeDate": "2026-06-24",
+      "subject": "电机Ⅱ",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=2; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 10:50:28",
+      "tradeDate": "2026-06-24",
+      "subject": "电机Ⅱ",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 09:45:32",
+      "tradeDate": "2026-06-24",
+      "subject": "电机Ⅱ",
+      "signalGrade": "C",
+      "changeType": "auto-create",
+      "summary": "stocks=1; catalyst=???????????? / 方正电机?????电机Ⅱ / ??????????"
+    }
+  ]
+}
+<!-- 73WIKI:AUTO_META:END -->

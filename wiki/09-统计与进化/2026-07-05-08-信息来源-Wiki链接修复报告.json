@@ -1,0 +1,125 @@
+{
+  "schema": "73wiki-priority-wikilink-repair-v1",
+  "generatedAt": "2026-07-05 10:17:31",
+  "write": true,
+  "dirs": [
+    "08-信息来源"
+  ],
+  "files": 56,
+  "changedLinks": 0,
+  "unresolvedLinksInReport": 14,
+  "reports": [
+    {
+      "path": "wiki/08-信息来源/2026-05-25-复盘摄入报告-1.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "竞价行为",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/2026-05-25-复盘摄入报告.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-25-市场数据存档",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/2026-06-10-日韩早盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-06-10-MLCC多空框架",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/总结/2026-05-21-盘中笔记.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "策略/震荡市低吸策略",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/总结/2026-05-24-周末简报.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/产业基本面支撑",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/总结/4月空白期追踪.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-14-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-21-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "C大普微-301666",
+          "status": "missing"
+        },
+        {
+          "link": "缺失数据追踪",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/批量HTML转Markdown脚本.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "go - 批量HTML转Markdown脚本",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/08-信息来源/核心提炼：2026-05-21-复盘摄入.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "策略/市场三态仓位对照表",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-21-收盘复盘",
+          "status": "missing"
+        },
+        {
+          "link": "策略/市场三态仓位对照表",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    }
+  ]
+}

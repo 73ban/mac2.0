@@ -1,0 +1,919 @@
+{
+  "schema": "73wiki-priority-wikilink-repair-v1",
+  "generatedAt": "2026-07-05 10:17:31",
+  "write": true,
+  "dirs": [
+    "00-总纲",
+    "07-作战室",
+    "09-统计与进化"
+  ],
+  "files": 516,
+  "changedLinks": 0,
+  "unresolvedLinksInReport": 142,
+  "reports": [
+    {
+      "path": "wiki/00-总纲/2026-05-22-账户总览.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "账户/账户总览索引",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/00-总纲/交易总规则-2.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "模式/龙头战法",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/00-总纲/交易总规则-5.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/验证再参与决策框架",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/00-总纲/总结/交割单缺失总览.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-28~30 交割单复盘缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-02-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-13-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-16-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-31-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-08-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-14-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-21-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-22-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-22-收盘复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/07-作战室/2026-06-03-午盘复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "股票/博众精工",
+          "status": "missing"
+        },
+        {
+          "link": "股票/博众精工",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/07-作战室/总结/2026-05-21-明日操盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "方法/锚定标的观察法",
+          "status": "missing"
+        },
+        {
+          "link": "方法/锚定标的观察法",
+          "status": "missing"
+        },
+        {
+          "link": "题材/玻璃基板",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/07-作战室/总结/2026-05-28-午盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/MLCC 主线",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/11月高频交易反思.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2024-11-14-复盘.md",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-09-12-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/认知-执行断裂",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-09-23.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "9月→12月的完整演变：从不敢买龙头到追错龙头",
+          "status": "missing"
+        },
+        {
+          "link": "龙头高位震荡卖出策略",
+          "status": "missing"
+        },
+        {
+          "link": "节前避险减仓",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-09-30-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/情绪扩散-vs-情绪深化",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-10-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/清仓换仓-假止损模式",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-11-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/退潮中的高风险转向",
+          "status": "missing"
+        },
+        {
+          "link": "股票/N强邦",
+          "status": "missing"
+        },
+        {
+          "link": "股票/N铜冠",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-22-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/卖飞-再锚定循环",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-25-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "来源/2024-10-25-复盘诊断",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-29-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/暴涨-暴跌交替",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-10-30-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2024-10-29-复盘补充诊断：龙头认知的质变——从看涨停到看预期",
+          "status": "missing"
+        },
+        {
+          "link": "2024-10-30-复盘诊断：第六次佳先，分仓追高，与龙头认知的彻底断裂.md",
+          "status": "missing"
+        },
+        {
+          "link": "2024-10-30-复盘诊断：第六次佳先，分仓追高，与龙头认知的彻底断裂.md",
+          "status": "missing"
+        },
+        {
+          "link": "2024-10-30-复盘诊断：第六次佳先，分仓追高，与龙头认知的彻底断裂.md",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-11-13-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/涨停潮-冰点压缩周期",
+          "status": "missing"
+        },
+        {
+          "link": "板块/上海国企改革(2024年11月)",
+          "status": "missing"
+        },
+        {
+          "link": "股票/和而泰",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-11-20-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "greed_driven/贪婪",
+          "status": "missing"
+        },
+        {
+          "link": "fear_driven/恐惧",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-11-22-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "交易频率",
+          "status": "missing"
+        },
+        {
+          "link": "概念/涨停-跌停急转",
+          "status": "missing"
+        },
+        {
+          "link": "概念/交易频率问题",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-11-25-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/AI玩具主线",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-11-29-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "复盘/2024-11-29",
+          "status": "missing"
+        },
+        {
+          "link": "复盘/2024-11-29",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-12-13-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/手法-环境匹配前置条件",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-12-16-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/同票日内反向操作",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024-12-27-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "12月18日复盘诊断",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2024年9月缺口追踪.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "总结/2024-2026-全期交割单连贯总结",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-14-交易记录.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "分析/2026-05-14-割肉-追高重仓诊断",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-21-独立复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/利好落地+宏观突袭双杀",
+          "status": "missing"
+        },
+        {
+          "link": "73神话 · 交易知识管理系统",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-27-2.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "题材/电力",
+          "status": "missing"
+        },
+        {
+          "link": "题材/MLCC超级电容",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-28-猫笔刀-一个大胆滴假设.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "分析/A股市场结构特征",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-29-A股抱团四条件.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/流动性抱团",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-05-29-复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/逻辑≠资金",
+          "status": "missing"
+        },
+        {
+          "link": "策略/绕异动交易模式",
+          "status": "missing"
+        },
+        {
+          "link": "概念/逻辑≠资金",
+          "status": "missing"
+        },
+        {
+          "link": "策略/绕异动交易模式",
+          "status": "missing"
+        },
+        {
+          "link": "概念/逻辑≠资金",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/2026-06-01-2.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "机器人板块 (2026年6月)",
+          "status": "missing"
+        },
+        {
+          "link": "机器人板块 (2026年6月)",
+          "status": "missing"
+        },
+        {
+          "link": "机器人板块 (2026年6月)",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/4月空白期追踪.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-21-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-24-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/9.24行情操作复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "总结/9-24行情完整操作闭环",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/9.24行情操作复盘与认知转换.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/市场阶段：一致转分歧",
+          "status": "missing"
+        },
+        {
+          "link": "概念/市场阶段：一致转分歧",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/index.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-06-05-退潮日仓位管理铁律确立",
+          "status": "missing"
+        },
+        {
+          "link": "9月→12月的完整演变：从不敢买龙头到追错龙头",
+          "status": "missing"
+        },
+        {
+          "link": "豫能控股清仓复盘 (2026-06-08)",
+          "status": "missing"
+        },
+        {
+          "link": "机器人板块 (2026年6月)",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/log.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-06-交割单",
+          "status": "missing"
+        },
+        {
+          "link": "大位科技-600589",
+          "status": "missing"
+        },
+        {
+          "link": "交割单复盘/2026年4月中旬-波段意识萌芽",
+          "status": "missing"
+        },
+        {
+          "link": "进化/4月中旬-波段意识萌芽与旧错误延续",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-01-交割单复盘（缺失提醒）",
+          "status": "missing"
+        },
+        {
+          "link": "交易复盘 Wiki 概览",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-25~26-交割单复盘-缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-05-14-交割单汇总-关键缺失环",
+          "status": "missing"
+        },
+        {
+          "link": "交易复盘 Wiki 概览",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-02-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-02-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-02-交割单复盘（缺失提醒）",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-02-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-12-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "金开新能-600821",
+          "status": "missing"
+        },
+        {
+          "link": "正丹股份-300641",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-19-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "拓维信息-002261",
+          "status": "missing"
+        },
+        {
+          "link": "首都在线-300846",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-27-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "正丹股份-300641",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-14-交割单",
+          "status": "missing"
+        },
+        {
+          "link": "银之杰-300085",
+          "status": "missing"
+        },
+        {
+          "link": "圣阳股份-002580",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-05-14-交割单汇总-关键缺失环",
+          "status": "missing"
+        },
+        {
+          "link": "吉翔股份-603399",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-16-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "2026-03-18-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "西部材料-002149",
+          "status": "missing"
+        },
+        {
+          "link": "拓维信息-002261",
+          "status": "missing"
+        },
+        {
+          "link": "首都在线-300846",
+          "status": "missing"
+        },
+        {
+          "link": "西部材料-002149",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "金开新能-600821",
+          "status": "missing"
+        },
+        {
+          "link": "山东墨龙-002490",
+          "status": "missing"
+        },
+        {
+          "link": "油服-油气设备",
+          "status": "missing"
+        },
+        {
+          "link": "5月26日-交易纪律总结",
+          "status": "missing"
+        },
+        {
+          "link": "2026-06-08-认知升级-逻辑在≠资金在",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "策略/市场三态仓位对照表",
+          "status": "missing"
+        },
+        {
+          "link": "sources/2026-05-19-收盘复盘",
+          "status": "missing"
+        },
+        {
+          "link": "sources/2026-05-20-收盘复盘",
+          "status": "missing"
+        },
+        {
+          "link": "sources/根据我当前知识库中的数据，我能看到的-4月份复盘-仅限于以下两天：",
+          "status": "missing"
+        },
+        {
+          "link": "wiki/index.md",
+          "status": "missing"
+        },
+        {
+          "link": "wiki/overview.md",
+          "status": "missing"
+        },
+        {
+          "link": "股票/合百集团-000417",
+          "status": "missing"
+        },
+        {
+          "link": "sources/目录下我没有摄入的内容，而不是缺失日期。现在我开始分析-5月18日",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/overview.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/预判-反预判轮动",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/单日多方向分散.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-27-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/复盘缺失记录.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-10-交割单",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/底仓验证缺口.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "股票/",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/新股申购记录.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "福恩股份-001312",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-10-交割单",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/核心提炼：2026-05-21-独立复盘.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "错误/日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "策略/市场三态仓位对照表",
+          "status": "missing"
+        },
+        {
+          "link": "概念/判断-执行剪刀差",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/概览.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-02-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "市场环境/",
+          "status": "missing"
+        },
+        {
+          "link": "股票/",
+          "status": "missing"
+        },
+        {
+          "link": "进化/",
+          "status": "missing"
+        },
+        {
+          "link": "错误/",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/英维克Q1财务拆解.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/AVL-RVL-MGX三层供应商体系",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/这三段复盘现在一起呈现。点击每条消息右下角的-【save-to-wiki】-按钮即可保存到知识库。.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026年3-5月错误进化链",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/09-统计与进化/陈果-极致拥挤后变盘分析-2026-05-31.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "分析/陈果-2026-05-31-极致拥挤后变盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    }
+  ]
+}

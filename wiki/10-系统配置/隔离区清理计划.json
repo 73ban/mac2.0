@@ -1,0 +1,53 @@
+{
+  "schema": "73wiki-conflicts-cleanup-plan-v1",
+  "generatedAt": "2026-07-05 10:10:27",
+  "observeDays": 10,
+  "root": ".conflicts",
+  "items": [
+    {
+      "path": ".conflicts/announcement-event-first-run-20260705",
+      "mtime": "2026-07-05 09:19:32",
+      "sizeBytes": 70706,
+      "eligible": false,
+      "reason": "观察期内保留"
+    },
+    {
+      "path": ".conflicts/announcement-event-second-run-20260705",
+      "mtime": "2026-07-05 09:20:37",
+      "sizeBytes": 70412,
+      "eligible": false,
+      "reason": "观察期内保留"
+    },
+    {
+      "path": ".conflicts/announcement-event-third-run-20260705",
+      "mtime": "2026-07-05 09:21:06",
+      "sizeBytes": 70385,
+      "eligible": false,
+      "reason": "观察期内保留"
+    },
+    {
+      "path": ".conflicts/lint-quarantine-20260704",
+      "mtime": "2026-07-04 14:14:19",
+      "sizeBytes": 39171174,
+      "eligible": false,
+      "reason": "观察期内保留"
+    },
+    {
+      "path": ".conflicts/mac-migration-quarantine-20260704",
+      "mtime": "2026-07-05 08:37:33",
+      "sizeBytes": 892594683,
+      "eligible": false,
+      "reason": "观察期内保留"
+    },
+    {
+      "path": ".conflicts/resolved",
+      "mtime": "2026-06-28 19:14:13",
+      "sizeBytes": 8342,
+      "eligible": false,
+      "reason": "观察期内保留"
+    }
+  ],
+  "eligibleCount": 0,
+  "eligibleBytes": 0,
+  "deleteCommandPolicy": "本脚本不删除；确认后再由用户明确授权删除清单内路径。"
+}

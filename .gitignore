@@ -1,0 +1,74 @@
+# macOS / editor noise
+.DS_Store
+._*
+*.swp
+*.tmp
+*.bak
+*~
+
+# Python / Node / local runtime
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+.venv-*/
+
+# Runtime caches, generated browser/LLM state, migration leftovers
+.llm-wiki/
+.73wiki/
+.obsidian/
+.conflicts/
+.stversions/
+**/.stversions/
+*sync-conflict*
+
+# Logs, locks, local notification history
+*.log
+.system/logs/
+.system/*.lock
+.system/feishu-notify-pending/
+.system/feishu-notify-sent/
+.system/feishu-notify-quarantine/
+.system/raw-html-backup/
+
+# Secrets / local credentials
+.env
+.env.*
+*.pem
+*.key
+*credential*
+*secret*
+*cookie*
+
+# RAW data is the source archive and can be huge.
+# Track only automation scripts under raw/07.
+raw/*
+!raw/07-系统脚本/
+!raw/07-系统脚本/**
+
+# Large training/facts data. Track only selected compact facts needed by the
+# trading-mode automation baseline.
+data/*
+!data/facts/
+data/facts/*
+!data/facts/a_share_trading_calendar.json
+!data/facts/dplus_monthly_accuracy_summary.json
+!data/facts/shortline_mode_dictionary.json
+!data/facts/trade_mode_attributions.jsonl
+!data/facts/trade_mode_dplus_results.jsonl
+!data/facts/warroom_candidate_predictions.jsonl
+!data/facts/warroom_dynamic_change_events.jsonl
+!data/facts/warroom_evidence_links.jsonl
+
+# Large binaries and research PDFs are intentionally left outside Git.
+*.pdf
+*.xls
+*.xlsx
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.zip
+*.dmg
+*.mp4
+*.mov

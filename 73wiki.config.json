@@ -1,0 +1,338 @@
+{
+  "automation": {
+    "enabled": true,
+    "pollIntervalMs": 3000,
+    "extensions": [
+      ".md",
+      ".txt",
+      ".csv",
+      ".json",
+      ".jsonl",
+      ".yaml",
+      ".yml",
+      ".html",
+      ".htm",
+      ".xml",
+      ".pdf",
+      ".rtf",
+      ".doc",
+      ".docx",
+      ".xls",
+      ".xlsx",
+      ".mp3",
+      ".m4a",
+      ".wav"
+    ],
+    "ignoredPaths": [
+      ".llm-wiki",
+      ".system/venv-tdxrs",
+      ".system/.system",
+      ".llm-wiki/.llm-wiki",
+      ".73wiki/.73wiki",
+      ".obsidian/.obsidian",
+      "data/data",
+      "raw/raw",
+      "raw/.stversions",
+      "raw/01-交割单/.stversions",
+      "raw/02-每日复盘/.stversions",
+      "raw/04-市场数据/.stversions",
+      "wiki/wiki",
+      "wiki/99-待删除审核",
+      "wiki/99-迁移",
+      "wiki/10-系统配置/logs",
+      "wiki/08-信息来源/RAW独立知识卡",
+      "wiki/08-信息来源/公众号-资料卡",
+      "wiki/08-信息来源/知识星球-每日上扬研报-资料卡"
+    ],
+    "watch": [
+      {
+        "path": "raw/01-交割单",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - trades",
+        "targetWikiDirs": [
+          "wiki/06-持仓与资金管理",
+          "wiki/09-统计与进化",
+          "wiki/05-错误库"
+        ]
+      },
+      {
+        "path": "raw/02-每日复盘",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - review",
+        "targetWikiDirs": [
+          "wiki/05-错误库",
+          "wiki/04-L4交易模式与执行",
+          "wiki/09-统计与进化"
+        ]
+      },
+      {
+        "path": "raw/03-每日计划",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - plan",
+        "targetWikiDirs": [
+          "wiki/07-作战室",
+          "wiki/06-持仓与资金管理"
+        ]
+      },
+      {
+        "path": "raw/04-市场数据",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - market",
+        "targetWikiDirs": [
+          "wiki/01-L1市场环境",
+          "wiki/07-作战室",
+          "wiki/09-统计与进化"
+        ]
+      },
+      {
+        "path": "raw/05-研报新闻",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - research",
+        "targetWikiDirs": [
+          "wiki/02-L2方向题材",
+          "wiki/03-L3个股档案",
+          "wiki/07-作战室",
+          "wiki/08-信息来源"
+        ]
+      },
+      {
+        "path": "raw/06-规则原文",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - rules",
+        "targetWikiDirs": [
+          "wiki/00-总纲",
+          "wiki/04-L4交易模式与执行",
+          "wiki/10-系统配置"
+        ]
+      },
+      {
+        "path": "raw/07-系统脚本",
+        "autoIngest": false,
+        "publishToChat": false,
+        "conversationTitle": "System scripts",
+        "targetWikiDirs": [
+          "wiki/10-系统配置"
+        ]
+      },
+      {
+        "path": "raw/08-截图",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - screenshots",
+        "targetWikiDirs": [
+          "wiki/02-L2方向题材",
+          "wiki/03-L3个股档案",
+          "wiki/07-作战室",
+          "wiki/08-信息来源"
+        ]
+      },
+      {
+        "path": "raw/09-短线知识",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - shortline knowledge",
+        "targetWikiDirs": [
+          "wiki/00-总纲",
+          "wiki/04-L4交易模式与执行",
+          "wiki/09-统计与进化"
+        ]
+      },
+      {
+        "path": "raw/10-飞书交易沟通",
+        "autoIngest": true,
+        "publishToChat": true,
+        "conversationTitle": "Auto ingest - feishu trading",
+        "targetWikiDirs": [
+          "wiki/05-错误库",
+          "wiki/06-持仓与资金管理",
+          "wiki/07-作战室",
+          "wiki/09-统计与进化"
+        ]
+      },
+      {
+        "path": "raw/11-Codex分析产物",
+        "autoIngest": false,
+        "publishToChat": false,
+        "conversationTitle": "Codex derivatives",
+        "targetWikiDirs": [
+          "wiki/07-作战室",
+          "wiki/09-统计与进化",
+          "wiki/10-系统配置"
+        ]
+      }
+    ],
+    "scanMode": "metadata-and-hash-first",
+    "registryFirst": true,
+    "readFullTextOnlyWhenNewOrChanged": true,
+    "maxFilesPerTick": 50,
+    "deepseekFallbackIntervalHours": 24,
+    "performanceRule": "3秒轮询只扫描文件名、mtime、大小和hash登记；未命中新文件或变更时不读取全文，不调用模型。",
+    "incrementalOnly": true,
+    "reprocessExistingRawOnlyWhenRequested": true,
+    "sourcePriority": [
+      {
+        "source": "知识星球研报纪要调研",
+        "priority": 1,
+        "defaultTruthGrade": "S2_when_readable_else_S3"
+      },
+      {
+        "source": "公告/交易所监管公告",
+        "priority": 2,
+        "defaultTruthGrade": "S1"
+      },
+      {
+        "source": "券商正式研报/机构电话会",
+        "priority": 3,
+        "defaultTruthGrade": "S2"
+      },
+      {
+        "source": "主流财经媒体行情数据",
+        "priority": 4,
+        "defaultTruthGrade": "S2_or_S3"
+      },
+      {
+        "source": "公众号/社群/截图小作文",
+        "priority": 5,
+        "defaultTruthGrade": "S3_or_S4"
+      }
+    ],
+    "knowledgePlanetFirst": true,
+    "skipRegisteredContent": true
+  },
+  "storage": {
+    "rawInboxPath": ".llm-wiki/raw-inbox.json",
+    "holdingsDecisionPath": "wiki/06-持仓与资金管理/当前持仓决策.md",
+    "marketEnvironmentDir": "wiki/01-L1市场环境",
+    "dailyPatternDir": "wiki/07-作战室",
+    "sourceRegistryPath": ".system/ingest-registry.jsonl"
+  },
+  "tradingBrain": {
+    "objective": "小资金快速做大，但优先控制回撤，依靠规则化进攻而不是情绪化交易。",
+    "market": "中国A股",
+    "style": "游资短线",
+    "allowInternet": false,
+    "rawMode": "source-directory-plus-war-room-classification",
+    "quickNav": [
+      {
+        "title": "今日作战室",
+        "path": "wiki/07-作战室/00-每日工作台.md"
+      },
+      {
+        "title": "今日复盘",
+        "path": "wiki/09-统计与进化"
+      },
+      {
+        "title": "当前持仓",
+        "path": "wiki/06-持仓与资金管理/当前持仓决策.md"
+      },
+      {
+        "title": "D+验证",
+        "path": "wiki/09-统计与进化/D+验证待回填总览.md"
+      },
+      {
+        "title": "错误库",
+        "path": "wiki/05-错误库"
+      },
+      {
+        "title": "模式库",
+        "path": "wiki/04-L4交易模式与执行/20万小资金超短模式总控.md"
+      },
+      {
+        "title": "数据接口健康",
+        "path": "wiki/10-系统配置/数据接口统一总控.md"
+      }
+    ],
+    "aClassPatterns": [
+      "龙头分歧转强",
+      "退潮末端修复",
+      "明确事件驱动的预期差机会"
+    ],
+    "forbiddenActions": [
+      "退潮日重仓硬做",
+      "模式外冲动交易",
+      "低确定性机会使用大仓位或融资",
+      "卖点触发后继续幻想",
+      "日内反复追涨杀跌"
+    ],
+    "aiContext": {
+      "enabled": true,
+      "activeDate": "2026-07-06",
+      "manifestPath": ".system/current-ai-context.json",
+      "activeContextPage": "wiki/07-作战室/2026-07-06-AI上下文包.md",
+      "requiredBeforeTradingAnswer": true
+    }
+  },
+  "agents": {
+    "codex": {
+      "displayName": "大鸟",
+      "duty": "主摄入者；联网验证；RAW到WIKI结构化沉淀；作战室候选生成；登记摄入和审计。",
+      "canWriteRaw": true,
+      "canWriteWiki": true,
+      "allowedRaw": [
+        "raw/01-交割单",
+        "raw/02-每日复盘",
+        "raw/03-每日计划",
+        "raw/04-市场数据",
+        "raw/05-研报新闻",
+        "raw/06-规则原文",
+        "raw/07-系统脚本",
+        "raw/08-截图",
+        "raw/09-短线知识",
+        "raw/10-飞书交易沟通",
+        "raw/11-Codex分析产物"
+      ],
+      "allowedWiki": [
+        "wiki/00-总纲",
+        "wiki/01-L1市场环境",
+        "wiki/02-L2方向题材",
+        "wiki/03-L3个股档案",
+        "wiki/04-L4交易模式与执行",
+        "wiki/05-错误库",
+        "wiki/06-持仓与资金管理",
+        "wiki/07-作战室",
+        "wiki/08-信息来源",
+        "wiki/09-统计与进化",
+        "wiki/10-系统配置"
+      ]
+    },
+    "tdxclaw": {
+      "displayName": "龙虎",
+      "duty": "龙虾/老虎事实层；交割单、每日复盘、市场数据、公告、竞价、涨停、龙虎榜等只写RAW，不写WIKI，不做最终交易结论；当前落盘与验收以本机Mac为准，不绑定Windows或云服务器。",
+      "canWriteRaw": true,
+      "canWriteWiki": false,
+      "allowedRaw": [
+        "raw/01-交割单",
+        "raw/02-每日复盘",
+        "raw/03-每日计划",
+        "raw/04-市场数据",
+        "raw/05-研报新闻",
+        "raw/10-飞书交易沟通",
+        "raw/07-系统脚本"
+      ],
+      "deniedWiki": [
+        "wiki"
+      ]
+    },
+    "hermes": {
+      "displayName": "河马",
+      "duty": "新闻、公众号、研报、纪要采集；只写RAW；不写WIKI。",
+      "canWriteRaw": true,
+      "canWriteWiki": false,
+      "allowedRaw": [
+        "raw/05-研报新闻",
+        "raw/06-规则原文"
+      ],
+      "deniedWiki": [
+        "wiki"
+      ]
+    }
+  },
+  "version": 4,
+  "updatedAt": "2026-07-05 00:00:00 +08:00"
+}

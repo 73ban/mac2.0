@@ -1,0 +1,63 @@
+{
+  "schema": "73wiki-codex-longrun-queue-v1",
+  "createdAt": "2026-07-05",
+  "objective": "围绕20万小资金快速做大和Codex超短自进化，持续完善73wiki交易系统。",
+  "activeQueue": [
+    {
+      "id": "P0-001",
+      "task": "当前可发现历史日期逐笔模式归因",
+      "status": "full_history_initial_done",
+      "priority": "P0",
+      "target": "raw/11-Codex分析产物/交易模式逐笔归因/YYYY-MM-DD/",
+      "acceptance": "已从最近30日期扩展到当前可发现历史日期，生成逐笔待校准归因表；下一步把缺模式字段的旧文件逐步原地回填。"
+    },
+    {
+      "id": "P0-002",
+      "task": "大亏日/大赚日模式归因",
+      "status": "initial_done",
+      "priority": "P0",
+      "target": "wiki/09-统计与进化/",
+      "acceptance": "已按逐笔模式D+结果聚合交易日，输出大赚/大亏日的正反馈模式和负反馈模式。"
+    },
+    {
+      "id": "P0-003",
+      "task": "39张模式页结构补齐",
+      "status": "done",
+      "priority": "P0",
+      "target": "wiki/04-L4交易模式与执行/游资交易模式卡片库/",
+      "acceptance": "模式页质量检查 needs_fix 已降到 0；后续任务是用真实样本补充统计数据。"
+    },
+    {
+      "id": "P0-004",
+      "task": "逐笔交易归因脚本",
+      "status": "done",
+      "priority": "P0",
+      "target": "raw/07-系统脚本/codex_trade_mode_attribution_enrich.py",
+      "acceptance": "能生成逐笔待校准归因表。"
+    },
+    {
+      "id": "P0-005",
+      "task": "D+验证接入模式字段",
+      "status": "initial_done",
+      "priority": "P0",
+      "target": "wiki/09-统计与进化/",
+      "acceptance": "已生成逐笔交易模式D+1/D+3/D+5验证，并能按主模式统计；下一步接入原有D+总账和飞书校准。"
+    },
+    {
+      "id": "P0-006",
+      "task": "作战室Top5强制模式字段",
+      "status": "done",
+      "priority": "P0",
+      "target": "wiki/07-作战室/",
+      "acceptance": "动态作战室Top5已强制输出主模式、辅助模式、买点类型、买点、卖点、失效条件、模式证据和变化原因。"
+    },
+    {
+      "id": "P0-007",
+      "task": "飞书校准改版",
+      "status": "done",
+      "priority": "P0",
+      "target": ".system/feishu-notify-pending/",
+      "acceptance": "重大消息、每日Top10、超短知识、动态作战室通知均要求带判断对象、当前判断、判断逻辑、不确定点/失效条件和回复口径；飞书协议检查已接入小时链路。"
+    }
+  ]
+}

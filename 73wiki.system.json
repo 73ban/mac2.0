@@ -1,0 +1,207 @@
+{
+  "version": 2,
+  "rawIngest": {
+    "enabled": false,
+    "pollIntervalMs": 4000,
+    "stablePolls": 2,
+    "publishToChat": true,
+    "conversationTitle": "Auto ingest",
+    "extensions": [
+      ".md",
+      ".txt",
+      ".csv",
+      ".json",
+      ".jsonl",
+      ".yaml",
+      ".yml",
+      ".html",
+      ".htm",
+      ".xml",
+      ".pdf",
+      ".rtf",
+      ".doc",
+      ".docx",
+      ".xls",
+      ".xlsx"
+    ],
+    "ignoredPathIncludes": [
+      ".conflicts/",
+      ".73wiki/backups/",
+      ".system/venv-tdxrs/",
+      ".system/raw-html-backup/",
+      ".llm-wiki/.llm-wiki/",
+      "data/data/",
+      ".stversions/",
+      ".stfolder/",
+      "raw/raw/",
+      "wiki/wiki/",
+      ".cache/"
+    ],
+    "monitorDirs": [
+      "raw/01-交割单",
+      "raw/02-每日复盘",
+      "raw/03-每日计划",
+      "raw/04-市场数据",
+      "raw/05-研报新闻",
+      "raw/06-规则原文",
+      "raw/08-截图",
+      "raw/09-短线知识",
+      "raw/10-飞书交易沟通",
+      "raw/11-Codex分析产物"
+    ],
+    "fileNamePattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2}).*\\.md$",
+    "contentTags": [
+      "研报新闻",
+      "持仓",
+      "逻辑",
+      "封单",
+      "复盘"
+    ],
+    "clipboard": {
+      "enabled": false,
+      "pollIntervalSeconds": 3,
+      "endpoint": ""
+    }
+  },
+  "analytics": {
+    "enabled": true,
+    "preferDuckDb": true,
+    "databasePath": ".73wiki/analytics.duckdb",
+    "tradeSourceDirs": [
+      "raw/01-交割单",
+      "raw/02-每日复盘",
+      "raw/10-飞书交易沟通"
+    ],
+    "includeFilePatterns": [
+      "交割单",
+      "交易记录",
+      "委托明细"
+    ],
+    "excludeFilePatterns": [
+      "复盘",
+      "分析",
+      "摄入",
+      "摘要",
+      "关键",
+      "持仓",
+      "账户",
+      "资产"
+    ],
+    "metrics": {
+      "accountEquity": 200000,
+      "maxTradesPerDay": 8,
+      "maxTurnoverRatio": 2,
+      "heavyTradeAmountThreshold": 100000
+    },
+    "modeTags": [
+      "半路",
+      "低吸",
+      "打板",
+      "排板",
+      "模式外"
+    ],
+    "errorTags": [
+      "卖点拖延",
+      "模式外交易",
+      "退潮日硬做",
+      "幻想持仓",
+      "低确定性重仓"
+    ],
+    "agentTags": [
+      "大鸟",
+      "河马",
+      "Mac自动",
+      "用户输入",
+      "自己"
+    ]
+  },
+  "dashboard": {
+    "defaultDateRange": {
+      "start": "2026-03-05",
+      "end": "2026-05-05"
+    },
+    "rankingTopN": 10,
+    "winRateMode": "tradingDay",
+    "positionRules": {
+      "accountEquity": 200000,
+      "heavyPositionRatio": 0.3,
+      "fullAttackRatio": 0.5,
+      "idealHoldingCountMin": 1,
+      "idealHoldingCountMax": 3
+    },
+    "modeGroups": {
+      "半路": [
+        "半路",
+        "追涨",
+        "分时突破",
+        "鍗婅矾"
+      ],
+      "低吸": [
+        "低吸",
+        "水下低吸",
+        "回踩",
+        "浣庡惛"
+      ],
+      "打板": [
+        "打板",
+        "扫板",
+        "排板",
+        "涨停",
+        "鎵撴澘",
+        "鎵澘",
+        "鎺掓澘",
+        "娑ㄥ仠"
+      ]
+    },
+    "modeLibrary": [
+      "低吸",
+      "半路",
+      "打板"
+    ],
+    "certaintyLevels": [
+      "A+",
+      "A",
+      "B",
+      "C"
+    ],
+    "errorTags": [
+      "模式外",
+      "卖点拖延",
+      "退潮期硬做",
+      "冲动交易",
+      "重仓错误"
+    ],
+    "brainConclusionCards": [
+      "heavyProfit",
+      "heavyWinRate",
+      "concentration",
+      "cycleWinRate"
+    ],
+    "visibleCards": [
+      "totalNetPnL",
+      "winRate",
+      "buyCount",
+      "heavyWinRate",
+      "modeDistribution",
+      "profitRanking",
+      "lossRanking",
+      "concentration"
+    ]
+  },
+  "fileTree": {
+    "autoRefresh": true,
+    "pollIntervalMs": 3000,
+    "watchDirs": [
+      "raw",
+      "wiki"
+    ]
+  },
+  "aiContext": {
+    "enabled": true,
+    "activeDate": "2026-07-06",
+    "manifestPath": ".system/current-ai-context.json",
+    "dailyReadmePath": "wiki/10-系统配置/AI每日启动读取清单.md",
+    "activeContextPage": "wiki/07-作战室/2026-07-06-AI上下文包.md",
+    "rule": "聊天和Codex Local回答交易问题前，先读取manifestPath里的pinnedPages，再做关键词搜索。"
+  }
+}

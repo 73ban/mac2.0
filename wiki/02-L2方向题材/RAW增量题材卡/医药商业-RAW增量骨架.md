@@ -1,0 +1,99 @@
+# 医药商业 RAW增量骨架档案
+
+```yaml
+theme: 医药商业
+trade_date: 2026-06-24
+plan_trade_date: 2026-06-24
+evidence_trade_date: 2026-06-24
+generated_at: 2026-06-23 10:00:32
+first_seen_at: 2026-06-23 09:50:29
+last_updated: 2026-06-23 10:00:32
+change_type: coverage-expanded
+theme_scope: specific
+signal_grade: C
+score: 0
+related_stocks: 2
+source_file_count: 1
+latest_catalyst_summary: ???????????? / 鹭燕医药?????医药商业 / ??????????
+```
+
+## 当前定位
+
+- 来源：RAW 首次或再次提到该题材后自动建档。
+- 当前等级：C
+- 当前状态：仅建骨架
+- 题材层级：可交易细分题材
+
+## 自动补卡状态
+
+- 首次建档：2026-06-23 09:50:29
+- 最近更新：2026-06-23 10:00:32
+- 本次变更：coverage-expanded
+- 最新催化摘要：???????????? / 鹭燕医药?????医药商业 / ??????????
+
+## 题材理解
+
+- 待继续厚化：定义、产业链、受益方向、预期差、失效条件。
+
+## 关联个股
+
+- 002788 鹭燕医药 | grade=C
+- 603716 塞力医疗 | grade=C
+
+## 最近催化
+
+- ????????????
+- 鹭燕医药?????医药商业
+- ??????????
+- 塞力医疗?????医药商业
+
+## AI细分
+
+- 暂无
+
+## 证据来源
+
+- .llm-wiki/limit-up-reasons/latest-limit-up-reasons.json
+
+## 制度化更新记录
+
+- 2026-06-23 10:00:32 | coverage-expanded | signal=C | stocks=2; catalyst=???????????? / 鹭燕医药?????医药商业 / ??????????
+- 2026-06-23 09:50:29 | auto-create | signal=C | stocks=1; catalyst=???????????? / 鹭燕医药?????医药商业 / ??????????
+
+<!-- 73WIKI:AUTO_META:START -->
+{
+  "kind": "theme",
+  "subject": "医药商业",
+  "firstSeenAt": "2026-06-23 09:50:29",
+  "lastUpdated": "2026-06-23 10:00:32",
+  "signalGrade": "C",
+  "changeType": "coverage-expanded",
+  "latestCatalyst": "???????????? / 鹭燕医药?????医药商业 / ??????????",
+  "coverageSize": 2,
+  "sourceFiles": [
+    ".llm-wiki/limit-up-reasons/latest-limit-up-reasons.json"
+  ],
+  "sourceTags": [
+    "eastmoney-limit-up-pool-skeleton",
+    "limit-up-reason"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-23 10:00:32",
+      "tradeDate": "2026-06-24",
+      "subject": "医药商业",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=???????????? / 鹭燕医药?????医药商业 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 09:50:29",
+      "tradeDate": "2026-06-24",
+      "subject": "医药商业",
+      "signalGrade": "C",
+      "changeType": "auto-create",
+      "summary": "stocks=1; catalyst=???????????? / 鹭燕医药?????医药商业 / ??????????"
+    }
+  ]
+}
+<!-- 73WIKI:AUTO_META:END -->

@@ -1,0 +1,187 @@
+# 家居用品 RAW增量骨架档案
+
+```yaml
+theme: 家居用品
+trade_date: 2026-06-29
+plan_trade_date: 2026-06-29
+evidence_trade_date: 2026-06-26
+generated_at: 2026-06-26 09:34:43
+first_seen_at: 2026-06-19 19:01:36
+last_updated: 2026-06-26 09:34:43
+change_type: auto-refresh
+theme_scope: specific
+signal_grade: C
+score: 0
+related_stocks: 2
+source_file_count: 1
+latest_catalyst_summary: direct code mention / direct name mention
+```
+
+## 当前定位
+
+- 来源：RAW 首次或再次提到该题材后自动建档。
+- 当前等级：C
+- 当前状态：仅建骨架
+- 题材层级：可交易细分题材
+
+## 自动补卡状态
+
+- 首次建档：2026-06-19 19:01:36
+- 最近更新：2026-06-26 09:34:43
+- 本次变更：auto-refresh
+- 最新催化摘要：direct code mention / direct name mention
+
+## 题材理解
+
+- 待继续厚化：定义、产业链、受益方向、预期差、失效条件。
+
+## 关联个股
+
+- 603313 梦百合 | grade=C
+- 603661 恒林股份 | grade=C
+
+## 最近催化
+
+- direct code mention
+- direct name mention
+
+## AI细分
+
+- 暂无
+
+## 证据来源
+
+- .llm-wiki/limit-up-reasons/latest-limit-up-reasons.json
+
+## 制度化更新记录
+
+- 2026-06-26 09:34:43 | auto-refresh | signal=C | stocks=2; catalyst=direct code mention / direct name mention
+- 2026-06-26 08:50:09 | coverage-expanded | signal=C | stocks=2; catalyst=direct code mention / direct name mention
+- 2026-06-25 09:34:47 | auto-refresh | signal=C | stocks=1; catalyst=direct code mention / 2连板德尔未来：目前在手订单主要为零星的石墨烯检测业务 2026年订单额极小 / direct name mention
+- 2026-06-24 22:30:10 | auto-refresh | signal=C | stocks=1; catalyst=direct code mention / 2连板德尔未来：目前在手订单主要为零星的石墨烯检测业务 2026年订单额极小 / direct name mention
+- 2026-06-23 20:38:30 | auto-refresh | signal=C | stocks=2; catalyst=???????????? / 德尔未来?????家居用品 / ??????????
+- 2026-06-23 10:20:31 | coverage-expanded | signal=C | stocks=2; catalyst=???????????? / 德尔未来?????家居用品 / ??????????
+- 2026-06-23 10:00:32 | auto-refresh | signal=C | stocks=1; catalyst=???????????? / 天安新材?????家居用品 / ??????????
+- 2026-06-23 09:34:08 | auto-refresh | signal=C | stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????
+- 2026-06-23 09:31:07 | coverage-expanded | signal=C | stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????
+- 2026-06-22 15:05:24 | auto-refresh | signal=C | stocks=1; catalyst=???????????? / 恒林股份?????家居用品 / ??????????
+- 2026-06-22 14:30:32 | auto-refresh | signal=C | stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????
+- 2026-06-22 14:00:22 | coverage-expanded | signal=C | stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????
+
+<!-- 73WIKI:AUTO_META:START -->
+{
+  "kind": "theme",
+  "subject": "家居用品",
+  "firstSeenAt": "2026-06-19 19:01:36",
+  "lastUpdated": "2026-06-26 09:34:43",
+  "signalGrade": "C",
+  "changeType": "auto-refresh",
+  "latestCatalyst": "direct code mention / direct name mention",
+  "coverageSize": 2,
+  "sourceFiles": [
+    ".llm-wiki/limit-up-reasons/latest-limit-up-reasons.json"
+  ],
+  "sourceTags": [
+    "eastmoney-limit-up-pool-skeleton",
+    "limit-up-reason"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-26 09:34:43",
+      "tradeDate": "2026-06-29",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=2; catalyst=direct code mention / direct name mention"
+    },
+    {
+      "timestamp": "2026-06-26 08:50:09",
+      "tradeDate": "2026-06-29",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=direct code mention / direct name mention"
+    },
+    {
+      "timestamp": "2026-06-25 09:34:47",
+      "tradeDate": "2026-06-26",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=direct code mention / 2连板德尔未来：目前在手订单主要为零星的石墨烯检测业务 2026年订单额极小 / direct name mention"
+    },
+    {
+      "timestamp": "2026-06-24 22:30:10",
+      "tradeDate": "2026-06-25",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=direct code mention / 2连板德尔未来：目前在手订单主要为零星的石墨烯检测业务 2026年订单额极小 / direct name mention"
+    },
+    {
+      "timestamp": "2026-06-23 20:38:30",
+      "tradeDate": "2026-06-24",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=2; catalyst=???????????? / 德尔未来?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 10:20:31",
+      "tradeDate": "2026-06-24",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=???????????? / 德尔未来?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 10:00:32",
+      "tradeDate": "2026-06-24",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=???????????? / 天安新材?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 09:34:08",
+      "tradeDate": "2026-06-24",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 09:31:07",
+      "tradeDate": "2026-06-24",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-22 15:05:24",
+      "tradeDate": "2026-06-23",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=???????????? / 恒林股份?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-22 14:30:32",
+      "tradeDate": "2026-06-23",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-22 14:00:22",
+      "tradeDate": "2026-06-23",
+      "subject": "家居用品",
+      "signalGrade": "C",
+      "changeType": "coverage-expanded",
+      "summary": "stocks=2; catalyst=???????????? / 天振股份?????家居用品 / ??????????"
+    }
+  ]
+}
+<!-- 73WIKI:AUTO_META:END -->

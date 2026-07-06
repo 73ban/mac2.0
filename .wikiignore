@@ -1,0 +1,34 @@
+# 73神话 Wiki/Lint/AI 上下文忽略清单
+#
+# 用途：给 Wiki 应用、Codex 脚本、计划审计、深度 lint 提供统一排除口径。
+# 注意：raw 抓取/摄入任务可以按需读取 raw；本文件主要用于“知识库索引、语义 lint、AI 上下文”降噪。
+
+# 迁移冲突、旧副本、备份
+.conflicts/**
+.73wiki/backups/**
+.system/.system/**
+.llm-wiki/.llm-wiki/**
+data/data/**
+
+# 运行缓存、虚拟环境、原始 HTML 备份
+.venv-ocr/**
+.system/venv-tdxrs/**
+.system/raw-html-backup/**
+.system/logs/**
+**/__pycache__/**
+**/node_modules/**
+**/dist/**
+**/build/**
+
+# Syncthing 元数据和版本历史
+**/.stfolder/**
+**/.stversions/**
+
+# 默认不让全库 Wiki/Lint 扫 RAW；专项脚本可单独扫描 raw
+raw/**
+data/**
+.llm-wiki/**
+.system/**
+
+# Windows 旧工具只作追溯
+raw/07-系统脚本/legacy-tools/**

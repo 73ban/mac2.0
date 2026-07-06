@@ -1,0 +1,95 @@
+# 物流 RAW增量骨架档案
+
+```yaml
+theme: 物流
+trade_date: 2026-06-23
+plan_trade_date: 2026-06-23
+evidence_trade_date: 2026-06-23
+generated_at: 2026-06-22 13:10:26
+first_seen_at: 2026-06-22 09:31:08
+last_updated: 2026-06-22 13:10:26
+change_type: auto-refresh
+theme_scope: specific
+signal_grade: B
+score: 300.9
+related_stocks: 1
+source_file_count: 1
+latest_catalyst_summary: ????????龙头??核心??公告 / ????????半导体??芯片??消费??物流
+```
+
+## 当前定位
+
+- 来源：RAW 首次或再次提到该题材后自动建档。
+- 当前等级：B
+- 当前状态：进入知识补卡
+- 题材层级：可交易细分题材
+
+## 自动补卡状态
+
+- 首次建档：2026-06-22 09:31:08
+- 最近更新：2026-06-22 13:10:26
+- 本次变更：auto-refresh
+- 最新催化摘要：????????龙头??核心??公告 / ????????半导体??芯片??消费??物流
+
+## 题材理解
+
+- 待继续厚化：定义、产业链、受益方向、预期差、失效条件。
+
+## 关联个股
+
+- 603713 密尔克卫 | grade=B
+
+## 最近催化
+
+- ????????龙头??核心??公告
+- ????????半导体??芯片??消费??物流
+
+## AI细分
+
+- 暂无
+
+## 证据来源
+
+- raw/05-研报新闻/公众号/游资号/财联社/2026-06-21_a4f108c91907.md
+
+## 制度化更新记录
+
+- 2026-06-22 13:10:26 | auto-refresh | signal=B | stocks=1; catalyst=????????龙头??核心??公告 / ????????半导体??芯片??消费??物流
+- 2026-06-22 09:31:08 | auto-create | signal=B | stocks=1; catalyst=????????龙头??核心??公告 / ????????半导体??芯片??消费??物流
+
+<!-- 73WIKI:AUTO_META:START -->
+{
+  "kind": "theme",
+  "subject": "物流",
+  "firstSeenAt": "2026-06-22 09:31:08",
+  "lastUpdated": "2026-06-22 13:10:26",
+  "signalGrade": "B",
+  "changeType": "auto-refresh",
+  "latestCatalyst": "????????龙头??核心??公告 / ????????半导体??芯片??消费??物流",
+  "coverageSize": 1,
+  "sourceFiles": [
+    "raw/05-研报新闻/公众号/游资号/财联社/2026-06-21_a4f108c91907.md"
+  ],
+  "sourceTags": [
+    "cls-news"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-22 13:10:26",
+      "tradeDate": "2026-06-23",
+      "subject": "物流",
+      "signalGrade": "B",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=????????龙头??核心??公告 / ????????半导体??芯片??消费??物流"
+    },
+    {
+      "timestamp": "2026-06-22 09:31:08",
+      "tradeDate": "2026-06-23",
+      "subject": "物流",
+      "signalGrade": "B",
+      "changeType": "auto-create",
+      "summary": "stocks=1; catalyst=????????龙头??核心??公告 / ????????半导体??芯片??消费??物流"
+    }
+  ]
+}
+<!-- 73WIKI:AUTO_META:END -->

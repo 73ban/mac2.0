@@ -1,0 +1,693 @@
+{
+  "schema": "73wiki-priority-wikilink-repair-v1",
+  "generatedAt": "2026-07-05 09:59:25",
+  "write": true,
+  "dirs": [
+    "05-错误库",
+    "04-L4交易模式与执行"
+  ],
+  "files": 4003,
+  "changedLinks": 0,
+  "unresolvedLinksInReport": 84,
+  "reports": [
+    {
+      "path": "wiki/04-L4交易模式与执行/2026-05-26-复盘摄入报告：操作质量与模式识别.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "5月26日-交易纪律总结",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/Wiki组织架构迭代日志.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/好的，我已经根据你的-wiki-知识库内容，把所有文件按照内容类型和用途进行了自动归类整理。.md",
+          "status": "missing"
+        },
+        {
+          "link": "73神话 · 交易知识管理系统",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/一致性高潮开盘的30分钟冷却规则.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "sources/untitled-3",
+          "status": "missing"
+        },
+        {
+          "link": "5月26日-交易纪律总结",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/三层信号确认机制.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/板块梯队成型\\",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/主动调仓卖出模式.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "中钨高新-000657",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/主线匹配优先.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "来源/12月18日复盘诊断：正反馈闭环后的锚定回追——视觉中国31.13的致命诱惑",
+          "status": "missing"
+        },
+        {
+          "link": "来源/12月18日复盘诊断：正反馈闭环后的锚定回追——视觉中国31.13的致命诱惑",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/仓位管理规则.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "融资使用规则",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/四层嵌套体系：数据黑洞对L4执行控制层的腐蚀.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/文件分析：2026-03-18-交割单.md",
+          "status": "missing"
+        },
+        {
+          "link": "策略/L4执行控制层",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/幽灵标的.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-15-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/快速清仓.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-24-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "西部材料-002149",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/持仓数据记录规范.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/20260522 我的持仓",
+          "status": "missing"
+        },
+        {
+          "link": "概念/知识-执行断裂",
+          "status": "missing"
+        },
+        {
+          "link": "sources/20260522 我的持仓",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/模式基因元点.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "深圳华强-000062",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/模式漂移.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "L4 执行控制层",
+          "status": "missing"
+        },
+        {
+          "link": "综艺股份-002081",
+          "status": "missing"
+        },
+        {
+          "link": "格式转换指南",
+          "status": "missing"
+        },
+        {
+          "link": "queries/好的。我已重新读取知识库中-超短模式-目录下的全部内容。",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/满仓融资切换.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "策略/L4执行控制层",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/盈利麻痹效应.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "9月→12月的完整演变：从不敢买龙头到追错龙头",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/盘点数据响应协议.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/文件分析：2026-03-18-交割单.md",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/短线频繁试错期.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026年3月全月交割单复盘 — 短线频繁试错期",
+          "status": "ambiguous"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/研报获取与追踪方法论.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "进化",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/筹码状态应对.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/筹码乱了\\",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/首个完整错误循环.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "深圳华强-000062",
+          "status": "missing"
+        },
+        {
+          "link": "日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "5月26日-交易纪律总结",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/高位加速票规避规则.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "策略/L4执行控制层",
+          "status": "missing"
+        },
+        {
+          "link": "策略/L4执行控制层",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/04-L4交易模式与执行/龙头二波与双头.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/确定性-仓位匹配",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/2026-06-11-利通电子-执行力不及格.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "执行力",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/2026年4月中旬交割单复盘-—-波段意识萌芽与旧错误延续.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/2026年4月中旬交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/2026年5月1~17日交割单复盘-—-旧错误复发与新灾难的伏笔.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/2026年5月1~17日交割单复盘-旧错误复发与新灾难的伏笔",
+          "status": "missing"
+        },
+        {
+          "link": "概念/规则驱动的纪律执行",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/5月灾难.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "融资使用规则",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/5月灾难专题.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "银之杰-300085",
+          "status": "missing"
+        },
+        {
+          "link": "圣阳股份-002580",
+          "status": "missing"
+        },
+        {
+          "link": "节前博弈心理",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-05-14-交割单汇总-关键缺失环",
+          "status": "missing"
+        },
+        {
+          "link": "杠杆依赖",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/一日扫货式建仓.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-24-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/一日散弹式建仓.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-04-16-交割单复盘",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-16-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/主题共振建仓.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-18-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/交割单/复盘连续性缺陷.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-05-05-14-交割单汇总-关键缺失环",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/信息缺失型重仓.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "概念/获利-追涨循环",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/分析/5月灾难专题.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-05-交割单",
+          "status": "missing"
+        },
+        {
+          "link": "2026-04-16-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/利好兑现型双杀陷阱.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "错误/日内追买-破位清仓",
+          "status": "missing"
+        },
+        {
+          "link": "错误/日内追买-破位清仓",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/单边净买入日.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-03-18-交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/总结/复盘连续性缺陷.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "交割单/2026年4月1~22日-交割单缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "个股档案/兆易创新-603986\\",
+          "status": "missing"
+        },
+        {
+          "link": "交割单/2026年4月1~22日-交割单缺失提醒",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/摊平亏损.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "总结/2026年3-5月错误进化链",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/日复盘/2026年5月1~17日交割单复盘-—-旧错误复发与新灾难的伏笔.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026年5月1~17日交割单复盘",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/日复盘/复盘连续性缺陷.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "sources/2026-05-16-交割单复盘-缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-17-交割单复盘-缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "sources/2026-05-16-交割单复盘-缺失提醒",
+          "status": "missing"
+        },
+        {
+          "link": "2026-05-17-交割单复盘-缺失提醒",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/旧错误复发.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026年5月22日委托分析：PCB高潮次日的集中押注",
+          "status": "missing"
+        },
+        {
+          "link": "概念/知识-执行断裂",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/知行脱节.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "心态/交易心理",
+          "status": "missing"
+        },
+        {
+          "link": "心态/交易心理",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/空方占优时的多头偏见.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "2026-06-10-MLCC多空框架",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/融资日内回转.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "吉翔股份-603399",
+          "status": "missing"
+        },
+        {
+          "link": "偷鸡模式",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/融资日内回转操作.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "吉翔股份-603399",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/贪婪驱动的纪律撤销.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "纪律阶梯-清仓到空仓",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/错误升级.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "总结/2026年3-5月错误进化链",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/错误案例库.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "股票/豫能控股\\",
+          "status": "missing"
+        },
+        {
+          "link": "个股档案/韶能股份-000601\\",
+          "status": "missing"
+        },
+        {
+          "link": "个股档案/鹏鼎控股-002938\\",
+          "status": "missing"
+        },
+        {
+          "link": "策略/L4执行控制层",
+          "status": "missing"
+        },
+        {
+          "link": "涨停板封单骤降即离场规则",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/错误进化链.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "D类错误-模式漂移",
+          "status": "missing"
+        },
+        {
+          "link": "A类错误-不止损逆势加仓",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "path": "wiki/05-错误库/隔日反向操作.md",
+      "changed": 0,
+      "unresolved": [
+        {
+          "link": "深圳华强-000062",
+          "status": "missing"
+        }
+      ],
+      "changes": []
+    }
+  ]
+}

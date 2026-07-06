@@ -1,0 +1,132 @@
+$rawRoot = "C:\wiki\73神话\raw"
+$htmlPattern = "*.html"
+$htmlFiles = Get-ChildItem -Path $rawRoot -Recurse -Filter $htmlPattern
+$total = $htmlFiles.Count
+Write-Host "Total HTML files: $total"
+
+$converted = 0
+$skipped = 0
+$errors = 0
+
+foreach ($f in $htmlFiles) {
+    $mdPath = [System.IO.Path]::ChangeExtension($f.FullName, ".md")
+    
+    if (Test-Path $mdPath) {
+        $skipped++
+        continue
+    }
+    
+    try {
+        $html = Get-Content -Path $f.FullName -Raw -Encoding UTF8
+        
+        # Extract title
+        $title = ""
+        if ($html -match '<title[^>]*>([^<]+)</title>') {
+            $title = $Matches[1].Trim()
+        }
+        if ([string]::IsNullOrEmpty($title)) {
+            if ($html -match '<h1[^>]*>([^<]+)</h1>') {
+                $title = $Matches[1].Trim()
+            }
+        }
+        if ([string]::IsNullOrEmpty($title)) {
+            $title = $f.BaseName
+        }
+        
+        # Extract body from js_content or rich_media_content
+        $body = ""
+        if ($html -match '<div[^>]*id="js_content"[^>]*>([\s\S]*?)</div>') {
+            $body = $Matches[1]
+        } elseif ($html -match '<div[^>]*class="rich_media_content[^"]*"[^>]*>([\s\S]*?)</div>') {
+            $body = $Matches[1]
+        } elseif ($html -match '<body[^>]*>([\s\S]*?)</body>') {
+            $body = $Matches[1]
+        } else {
+            $body = $html
+        }
+        
+        # Remove scripts and styles
+        $body = $body -replace '<script[\s\S]*?</script>', ''
+        $body = $body -replace '<style[\s\S]*?</style>', ''
+        
+        # Block elements to newlines
+        $body = $body -replace '<br\s*/?>', "`n"
+        $body = $body -replace '<p[^>]*>', "`n`n"
+        $body = $body -replace '</p>', ''
+        $body = $body -replace '</?div[^>]*>', "`n"
+        $body = $body -replace '</?span[^>]*>', ''
+        $body = $body -replace '</?section[^>]*>', "`n"
+        
+        # Inline formatting
+        $body = $body -replace '<strong[^>]*>', '**'
+        $body = $body -replace '</strong>', '**'
+        $body = $body -replace '<em[^>]*>', '*'
+        $body = $body -replace '</em>', '*'
+        $body = $body -replace '<b[^>]*>', '**'
+        $body = $body -replace '</b>', '**'
+        
+        # Headings
+        $body = $body -replace '<h1[^>]*>', "`n# "
+        $body = $body -replace '</h1>', "`n"
+        $body = $body -replace '<h2[^>]*>', "`n## "
+        $body = $body -replace '</h2>', "`n"
+        $body = $body -replace '<h3[^>]*>', "`n### "
+        $body = $body -replace '</h3>', "`n"
+        $body = $body -replace '<h4[^>]*>', "`n#### "
+        $body = $body -replace '</h4>', "`n"
+        
+        # Blockquote
+        $body = $body -replace '<blockquote[^>]*>', "`n> "
+        $body = $body -replace '</blockquote>', "`n"
+        
+        # Lists
+        $body = $body -replace '<li[^>]*>', "`n- "
+        $body = $body -replace '</li>', ''
+        $body = $body -replace '</?ul[^>]*>', "`n"
+        $body = $body -replace '</?ol[^>]*>', "`n"
+        
+        # Links: <a href="URL">text</a> -> [text](URL)
+        $body = $body -replace '<a[^>]*href="([^"]*)"[^>]*>([^<]*)</a>', '[$2]($1)'
+        
+        # Images: <img src="URL" ... /> -> ![](URL)
+        $body = $body -replace '<img[^>]*src="([^"]*)"[^>]*/?>', "`n![]($1)`n"
+        
+        # Remove any remaining HTML tags
+        $body = $body -replace '<[^>]+>', ''
+        
+        # Decode entities
+        $body = $body -replace '&amp;', '&'
+        $body = $body -replace '&lt;', '<'
+        $body = $body -replace '&gt;', '>'
+        $body = $body -replace '&quot;', '"'
+        $body = $body -replace '&apos;', "'"
+        $body = $body -replace '&nbsp;', ' '
+        $body = $body -replace '&#39;', "'"
+        $body = $body -replace '&#160;', ' '
+        
+        # Clean excessive whitespace
+        $body = $body -replace '\n{3,}', "`n`n"
+        $body = $body -replace ' {2,}', ' '
+        $body = $body.Trim()
+        
+        # Build final markdown
+        $md = "# $title`n`n"
+        $md += "> 来源：微信公众号`n`n"
+        $md += $body
+        $md += "`n"
+        
+        [System.IO.File]::WriteAllText($mdPath, $md, [System.Text.UTF8Encoding]::new($false))
+        
+        $converted++
+        if ($converted % 50 -eq 0) {
+            Write-Host "Converted: $converted / $total"
+        }
+    }
+    catch {
+        $errors++
+        Write-Host "Error: $($f.FullName) - $_"
+    }
+}
+
+Write-Host ""
+Write-Host "DONE. Total=$total | Converted=$converted | Skipped=$skipped | Errors=$errors"

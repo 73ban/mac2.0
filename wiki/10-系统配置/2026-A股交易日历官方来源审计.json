@@ -1,0 +1,17 @@
+{
+  "schema": "73wiki-trading-calendar-source-audit-v1",
+  "generatedAt": "2026-07-05 10:10:17",
+  "year": "2026",
+  "calendarPath": "data/facts/a_share_trading_calendar.json",
+  "status": "pending_official_exchange_notice",
+  "source": "本地A股交易日历人工维护；后续以沪深交易所年度休市安排复核更新",
+  "officialUrls": [],
+  "review": {
+    "status": "pending_official_exchange_notice",
+    "checkedAt": "2026-07-05",
+    "note": "本地已接入交易日历口径；尚未登记沪深交易所2026年度休市公告URL。补到官方URL后运行 codex_audit_trading_calendar_sources.py 复核。"
+  },
+  "closedCount": 19,
+  "openOverrideCount": 0,
+  "requiredAction": "补沪深交易所或证监会年度休市公告URL，再复核 closed/open 列表。"
+}

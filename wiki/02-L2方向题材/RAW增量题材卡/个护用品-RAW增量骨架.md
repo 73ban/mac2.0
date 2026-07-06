@@ -1,0 +1,97 @@
+# 个护用品 RAW增量骨架档案
+
+```yaml
+theme: 个护用品
+trade_date: 2026-06-24
+plan_trade_date: 2026-06-24
+evidence_trade_date: 2026-06-24
+generated_at: 2026-06-23 20:38:30
+first_seen_at: 2026-06-23 10:20:31
+last_updated: 2026-06-23 20:38:30
+change_type: auto-refresh
+theme_scope: specific
+signal_grade: C
+score: 0
+related_stocks: 1
+source_file_count: 1
+latest_catalyst_summary: ???????????? / 依依股份?????个护用品 / ??????????
+```
+
+## 当前定位
+
+- 来源：RAW 首次或再次提到该题材后自动建档。
+- 当前等级：C
+- 当前状态：仅建骨架
+- 题材层级：可交易细分题材
+
+## 自动补卡状态
+
+- 首次建档：2026-06-23 10:20:31
+- 最近更新：2026-06-23 20:38:30
+- 本次变更：auto-refresh
+- 最新催化摘要：???????????? / 依依股份?????个护用品 / ??????????
+
+## 题材理解
+
+- 待继续厚化：定义、产业链、受益方向、预期差、失效条件。
+
+## 关联个股
+
+- 001206 依依股份 | grade=C
+
+## 最近催化
+
+- ????????????
+- 依依股份?????个护用品
+- ??????????
+
+## AI细分
+
+- 暂无
+
+## 证据来源
+
+- .llm-wiki/limit-up-reasons/latest-limit-up-reasons.json
+
+## 制度化更新记录
+
+- 2026-06-23 20:38:30 | auto-refresh | signal=C | stocks=1; catalyst=???????????? / 依依股份?????个护用品 / ??????????
+- 2026-06-23 10:20:31 | auto-create | signal=C | stocks=1; catalyst=???????????? / 依依股份?????个护用品 / ??????????
+
+<!-- 73WIKI:AUTO_META:START -->
+{
+  "kind": "theme",
+  "subject": "个护用品",
+  "firstSeenAt": "2026-06-23 10:20:31",
+  "lastUpdated": "2026-06-23 20:38:30",
+  "signalGrade": "C",
+  "changeType": "auto-refresh",
+  "latestCatalyst": "???????????? / 依依股份?????个护用品 / ??????????",
+  "coverageSize": 1,
+  "sourceFiles": [
+    ".llm-wiki/limit-up-reasons/latest-limit-up-reasons.json"
+  ],
+  "sourceTags": [
+    "eastmoney-limit-up-pool-skeleton",
+    "limit-up-reason"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-23 20:38:30",
+      "tradeDate": "2026-06-24",
+      "subject": "个护用品",
+      "signalGrade": "C",
+      "changeType": "auto-refresh",
+      "summary": "stocks=1; catalyst=???????????? / 依依股份?????个护用品 / ??????????"
+    },
+    {
+      "timestamp": "2026-06-23 10:20:31",
+      "tradeDate": "2026-06-24",
+      "subject": "个护用品",
+      "signalGrade": "C",
+      "changeType": "auto-create",
+      "summary": "stocks=1; catalyst=???????????? / 依依股份?????个护用品 / ??????????"
+    }
+  ]
+}
+<!-- 73WIKI:AUTO_META:END -->

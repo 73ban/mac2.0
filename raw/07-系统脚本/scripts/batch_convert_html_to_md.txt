@@ -1,0 +1,91 @@
+# Batch convert all HTML files under 公众号 to Markdown
+$rawRoot = "C:\wiki\73神话\raw\公众号"
+$total = 0
+$converted = 0
+$skipped = 0
+$errors = 0
+
+$htmlFiles = Get-ChildItem -Path $rawRoot -Recurse -Filter "*.html"
+$total = $htmlFiles.Count
+Write-Host "Total HTML files found: $total" -ForegroundColor Cyan
+
+foreach ($file in $htmlFiles) {
+    $mdPath = [System.IO.Path]::ChangeExtension($file.FullName, ".md")
+    
+    if (Test-Path $mdPath) {
+        $skipped++
+        continue
+    }
+    
+    try {
+        $html = Get-Content -Path $file.FullName -Raw -Encoding UTF8
+        
+        # Extract title
+        $title = ""
+        if ($html -match '<title>(.+?)</title>') {
+            $title = $Matches[1]
+        }
+        
+        # Extract source line
+        $source = ""
+        if ($html -match '<p>([^<]+?\|\s*\d+\s*\|.+?)</p>') {
+            $source = $Matches[1]
+        }
+        
+        # Extract body after <hr>
+        $body = $html
+        if ($body -match '<hr>(.*)') {
+            $body = $Matches[1]
+        }
+        
+        # Remove mp-common-profile blocks
+        $body = $body -replace '<mp-common-profile[^>]*>.*?</mp-common-profile>', ''
+        # Remove mp-style-type blocks
+        $body = $body -replace '<mp-style-type[^>]*>.*?</mp-style-type>', ''
+        # Remove display:none paragraphs
+        $body = $body -replace '<p style="display: none;">.*?</p>', ''
+        
+        # Convert <img src="URL"...> to ![](URL)
+        $body = $body -replace '<img\s+src="([^"]+)"[^>]*/?>', "`n![]($1)`n"
+        
+        # Remove all remaining HTML tags
+        $body = $body -replace '<[^>]+>', ''
+        
+        # Decode HTML entities
+        $body = $body -replace '&amp;', '&'
+        $body = $body -replace '&lt;', '<'
+        $body = $body -replace '&gt;', '>'
+        $body = $body -replace '&quot;', '"'
+        $body = $body -replace '&nbsp;', ' '
+        
+        # Normalize line endings and blank lines
+        $body = $body -replace "`r", ''
+        $body = $body -replace "`n`n`n+", "`n`n"
+        $body = $body.Trim()
+        
+        # Build markdown
+        $md = @"
+# $title
+
+> 来源: $source
+
+---
+
+$body
+"@
+        
+        [System.IO.File]::WriteAllText($mdPath, $md, [System.Text.UTF8Encoding]::new($false))
+        $converted++
+        
+        if ($converted % 50 -eq 0) {
+            Write-Host "  Progress: $converted / $total" -ForegroundColor Yellow
+        }
+    }
+    catch {
+        Write-Host "  ERROR: $($file.Name) - $_" -ForegroundColor Red
+        $errors++
+    }
+}
+
+Write-Host "========================================" -ForegroundColor Green
+Write-Host "DONE. Total=$total | Converted=$converted | Skipped=$skipped | Errors=$errors" -ForegroundColor Green

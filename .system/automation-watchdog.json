@@ -1,0 +1,226 @@
+{
+  "schema": "73wiki-automation-watchdog-v1",
+  "date": "2026-07-06",
+  "generatedAt": "2026-07-06 07:58:43",
+  "status": "critical",
+  "criticalCount": 1,
+  "warningCount": 0,
+  "checks": [
+    {
+      "name": "云数据连接器15分钟总线",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.cloud-data-connectors 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "数据接口健康报告",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.data-interface-health 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "PaddleOCR截图识别",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.paddleocr-raw08 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "淘股吧热榜",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.taoguba-hotlist 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "淘股吧实盘赛",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.taoguba-contest-pipeline 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "韭研公社网页",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.jiuyangongshe-web-fetch 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "短线模式词典扫描",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.shortline-mode-dictionary 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "动态作战室Top5",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.dynamic-warroom-top5 已加载；state=active；last_exit=0",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "WeRSS本地服务",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.73wiki.local-werss 已加载；state=active；last_exit=(never exited)",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "飞书桥",
+      "level": "ok",
+      "status": "loaded",
+      "detail": "com.qixinchaye.feishu-codex-bridge 已加载；state=active",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "PaddleOCR模型/侧车",
+      "level": "ok",
+      "status": "ok",
+      "detail": "可用：PaddleOCR PP-OCRv6 small",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "云数据连接器健康文件",
+      "level": "ok",
+      "status": "ok",
+      "detail": "statusColor=yellow finishedAt=2026-07-06 07:58:41",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "WeRSS/微信本地探针",
+      "level": "ok",
+      "status": "raw_writing",
+      "detail": "公众号RAW仍在更新；最新 2026-07-06 07:58:39 raw/05-研报新闻/公众号/媒体号/通达信趋势财经/2026-07-06_8acd85c96158.md",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "WeRSS/公众号RAW写入",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/05-研报新闻/公众号/媒体号/通达信趋势财经/2026-07-06_8acd85c96158.md",
+      "latest_time": "2026-07-06 07:58:39"
+    },
+    {
+      "name": "财联社CS财经",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 2 分钟前更新",
+      "latest_path": "raw/05-研报新闻/财联社/CS财经/环球市场/2026-07-06-213527-全球首个针对本迪布焦型埃博拉病毒的临床试验启动-722b5029.md",
+      "latest_time": "2026-07-06 07:56:26"
+    },
+    {
+      "name": "同花顺热榜Top100",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 2 分钟前更新",
+      "latest_path": "raw/04-市场数据/同花顺热榜/2026-07-06/ths-hot-top100.md",
+      "latest_time": "2026-07-06 07:56:29"
+    },
+    {
+      "name": "三榜热度合并",
+      "level": "critical",
+      "status": "missing",
+      "detail": "目录无可用产物：raw/04-市场数据/三榜热度合并/2026-07-06",
+      "latest_path": "",
+      "latest_time": ""
+    },
+    {
+      "name": "RAW到Wiki/重要信息产物",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/每日重要信息Top10/2026-07-06/daily-important-info-top10.md",
+      "latest_time": "2026-07-06 07:58:42"
+    },
+    {
+      "name": "动态作战室Top5",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/动态作战室/2026-07-06/dynamic-warroom-evolution.md",
+      "latest_time": "2026-07-06 07:58:42"
+    },
+    {
+      "name": "短线模式词典扫描产物",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/短线模式词典/2026-07-06/模式词频扫描.md",
+      "latest_time": "2026-07-06 07:57:49"
+    },
+    {
+      "name": "交易模式页面质量检查",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/交易模式质量检查/2026-07-06/mode-page-lint.md",
+      "latest_time": "2026-07-06 07:57:49"
+    },
+    {
+      "name": "交易模式归因缺口审计",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/交易模式归因审计/2026-07-06/trade-mode-attribution-audit.md",
+      "latest_time": "2026-07-06 07:57:49"
+    },
+    {
+      "name": "逐笔交易模式归因",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/交易模式逐笔归因/2026-07-06/recent-trade-mode-attribution.md",
+      "latest_time": "2026-07-06 07:57:49"
+    },
+    {
+      "name": "交易模式D+验证",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/交易模式D+验证/2026-07-06/trade-mode-dplus.md",
+      "latest_time": "2026-07-06 07:57:56"
+    },
+    {
+      "name": "大赚大亏日模式归因",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/交易模式大赚大亏日归因/2026-07-06/trade-mode-bigday-review.md",
+      "latest_time": "2026-07-06 07:57:56"
+    },
+    {
+      "name": "Codex长期运行驾驶舱",
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/11-Codex分析产物/Codex长期运行驾驶舱/2026-07-06/codex-longrun-dashboard.md",
+      "latest_time": "2026-07-06 07:57:56"
+    },
+    {
+      "name": "淘股吧热榜100",
+      "level": "ok",
+      "status": "not_due",
+      "detail": "18:00/22:00任务未到首次执行窗口",
+      "latest_path": "",
+      "latest_time": ""
+    }
+  ]
+}

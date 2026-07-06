@@ -1,0 +1,183 @@
+{
+  "schema": "73wiki-dynamic-data-dir-audit-v1",
+  "generatedAt": "2026-07-05 10:21:35",
+  "date": "2026-07-05",
+  "summary": {
+    "dirs": 12,
+    "exists": 12,
+    "todayArrived": 2
+  },
+  "rows": [
+    {
+      "label": "财联社CS财经",
+      "dir": "raw/05-研报新闻/财联社",
+      "exists": true,
+      "todayCount": 3,
+      "latest": {
+        "path": "raw/05-研报新闻/财联社/CS财经/2026-07-05-213353-【财联VIP专栏】【风口研报季度回顾】近4倍“季度榜首”出炉+二季度孵化41只翻倍标的！借力王牌自营“先发视角”，吃透AI硬科技行情逻辑-de936b4b.md",
+        "mtime": "2026-07-05 09:09:07",
+        "sizeBytes": 1540
+      },
+      "samples": [
+        {
+          "path": "raw/05-研报新闻/财联社/CS财经/2026-07-05-213353-【财联VIP专栏】【风口研报季度回顾】近4倍“季度榜首”出炉+二季度孵化41只翻倍标的！借力王牌自营“先发视角”，吃透AI硬科技行情逻辑-de936b4b.md",
+          "mtime": "2026-07-05 09:09:07",
+          "sizeBytes": 1540
+        },
+        {
+          "path": "raw/05-研报新闻/财联社/CS财经/美股/2026-07-05-213346-PC及内存硬盘价格持续高位：硬盘一天三个价-经销商喊出“非刚需别买”-b81a95da.md",
+          "mtime": "2026-07-05 07:42:36",
+          "sizeBytes": 1898
+        },
+        {
+          "path": "raw/05-研报新闻/财联社/CS财经/环球市场/2026-07-05-213340-山火持续蔓延-葡萄牙向欧盟请求支援-d1d5b8f2.md",
+          "mtime": "2026-07-05 06:14:21",
+          "sizeBytes": 1039
+        }
+      ]
+    },
+    {
+      "label": "同花顺热榜",
+      "dir": "raw/04-市场数据/同花顺热榜",
+      "exists": true,
+      "todayCount": 2,
+      "latest": {
+        "path": "raw/04-市场数据/同花顺热榜/2026-07-05/ths-hot-top100.md",
+        "mtime": "2026-07-05 10:20:12",
+        "sizeBytes": 11531
+      },
+      "samples": [
+        {
+          "path": "raw/04-市场数据/同花顺热榜/2026-07-05/ths-hot-top100.md",
+          "mtime": "2026-07-05 10:20:12",
+          "sizeBytes": 11531
+        },
+        {
+          "path": "raw/04-市场数据/同花顺热榜/2026-07-05/ths-hot-top100.json",
+          "mtime": "2026-07-05 10:20:12",
+          "sizeBytes": 151712
+        }
+      ]
+    },
+    {
+      "label": "通达信热榜",
+      "dir": "raw/04-市场数据/通达信热榜",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/通达信热榜/2026-07-03/tdx-hot-top100.md",
+        "mtime": "2026-07-04 08:32:20",
+        "sizeBytes": 6684
+      },
+      "samples": []
+    },
+    {
+      "label": "每日涨停全景",
+      "dir": "raw/04-市场数据/每日涨停全景",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/每日涨停全景/2026-07-03/tdx-daily-limit.md",
+        "mtime": "2026-07-04 08:32:20",
+        "sizeBytes": 27651
+      },
+      "samples": []
+    },
+    {
+      "label": "首板涨停催化",
+      "dir": "raw/04-市场数据/首板涨停催化",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/首板涨停催化/2026-07-03/tdx-first-board-catalyst.md",
+        "mtime": "2026-07-04 08:32:20",
+        "sizeBytes": 20487
+      },
+      "samples": []
+    },
+    {
+      "label": "板块强度",
+      "dir": "raw/04-市场数据/板块强度",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/板块强度/2026-07-03/tdx-board-strength.md",
+        "mtime": "2026-07-04 08:32:20",
+        "sizeBytes": 1498
+      },
+      "samples": []
+    },
+    {
+      "label": "板块成分股",
+      "dir": "raw/04-市场数据/板块成分股",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/板块成分股/2026-07-03/tdx-board-members.json",
+        "mtime": "2026-07-03 17:59:26",
+        "sizeBytes": 89967
+      },
+      "samples": []
+    },
+    {
+      "label": "龙虎榜全量",
+      "dir": "raw/04-市场数据/龙虎榜全量",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/04-市场数据/龙虎榜全量/2026-07-03/龙虎榜全量日报.md",
+        "mtime": "2026-07-03 18:33:19",
+        "sizeBytes": 10249
+      },
+      "samples": []
+    },
+    {
+      "label": "公告",
+      "dir": "raw/05-研报新闻/公告",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/05-研报新闻/公告/2026-07-04/daily-announcements.md",
+        "mtime": "2026-07-05 08:55:42",
+        "sizeBytes": 7139
+      },
+      "samples": []
+    },
+    {
+      "label": "互动问答",
+      "dir": "raw/05-研报新闻/互动问答",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/05-研报新闻/互动问答/2026-07-04/interactive-qa.md",
+        "mtime": "2026-07-04 19:03:31",
+        "sizeBytes": 49422
+      },
+      "samples": []
+    },
+    {
+      "label": "飞书复盘RAW",
+      "dir": "raw/02-每日复盘",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/02-每日复盘/计划审计兼容/2026-05-29-复盘.md",
+        "mtime": "2026-07-04 14:49:02",
+        "sizeBytes": 5498
+      },
+      "samples": []
+    },
+    {
+      "label": "交割单RAW",
+      "dir": "raw/01-交割单",
+      "exists": true,
+      "todayCount": 0,
+      "latest": {
+        "path": "raw/01-交割单/2026/05/2026-05-25-交割单.md",
+        "mtime": "2026-07-04 17:01:38",
+        "sizeBytes": 2726
+      },
+      "samples": []
+    }
+  ]
+}

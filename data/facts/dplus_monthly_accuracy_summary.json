@@ -1,0 +1,291 @@
+{
+  "schema": "73wiki-dplus-monthly-dashboard-v1",
+  "generatedAt": "2026-07-06 07:58:41",
+  "month": "2026-07",
+  "predictionCount": 112,
+  "resultCount": 94,
+  "summary": {
+    "byMonth": {
+      "2026-06": {
+        "total": 15,
+        "hit": 4,
+        "weak": 9,
+        "fail": 2,
+        "missing": 0,
+        "strictHitRate": 26.67,
+        "usableRate": 86.67,
+        "failRate": 13.33,
+        "avgRelativeToSH": 0.3
+      },
+      "2026-07": {
+        "total": 79,
+        "hit": 22,
+        "weak": 19,
+        "fail": 38,
+        "missing": 0,
+        "strictHitRate": 27.85,
+        "usableRate": 51.9,
+        "failRate": 48.1,
+        "avgRelativeToSH": 2.81
+      }
+    },
+    "byDay": {
+      "2026-06-26": {
+        "total": 1,
+        "hit": 0,
+        "weak": 1,
+        "fail": 0,
+        "missing": 0,
+        "strictHitRate": 0.0,
+        "usableRate": 100.0,
+        "failRate": 0.0,
+        "avgRelativeToSH": null
+      },
+      "2026-06-29": {
+        "total": 2,
+        "hit": 1,
+        "weak": 1,
+        "fail": 0,
+        "missing": 0,
+        "strictHitRate": 50.0,
+        "usableRate": 100.0,
+        "failRate": 0.0,
+        "avgRelativeToSH": 3.19
+      },
+      "2026-06-30": {
+        "total": 12,
+        "hit": 3,
+        "weak": 7,
+        "fail": 2,
+        "missing": 0,
+        "strictHitRate": 25.0,
+        "usableRate": 83.33,
+        "failRate": 16.67,
+        "avgRelativeToSH": -0.18
+      },
+      "2026-07-01": {
+        "total": 17,
+        "hit": 6,
+        "weak": 4,
+        "fail": 7,
+        "missing": 0,
+        "strictHitRate": 35.29,
+        "usableRate": 58.82,
+        "failRate": 41.18,
+        "avgRelativeToSH": 2.75
+      },
+      "2026-07-02": {
+        "total": 60,
+        "hit": 16,
+        "weak": 13,
+        "fail": 31,
+        "missing": 0,
+        "strictHitRate": 26.67,
+        "usableRate": 48.33,
+        "failRate": 51.67,
+        "avgRelativeToSH": 2.87
+      },
+      "2026-07-03": {
+        "total": 2,
+        "hit": 0,
+        "weak": 2,
+        "fail": 0,
+        "missing": 0,
+        "strictHitRate": 0.0,
+        "usableRate": 100.0,
+        "failRate": 0.0,
+        "avgRelativeToSH": 1.83
+      }
+    },
+    "bySource": {
+      "dplus": {
+        "total": 31,
+        "hit": 5,
+        "weak": 13,
+        "fail": 13,
+        "missing": 0,
+        "strictHitRate": 16.13,
+        "usableRate": 58.06,
+        "failRate": 41.94,
+        "avgRelativeToSH": -2.13
+      },
+      "warroom_d0": {
+        "total": 63,
+        "hit": 21,
+        "weak": 15,
+        "fail": 27,
+        "missing": 0,
+        "strictHitRate": 33.33,
+        "usableRate": 57.14,
+        "failRate": 42.86,
+        "avgRelativeToSH": 4.61
+      }
+    },
+    "byNode": {
+      "D+0": {
+        "total": 27,
+        "hit": 9,
+        "weak": 6,
+        "fail": 12,
+        "missing": 0,
+        "strictHitRate": 33.33,
+        "usableRate": 55.56,
+        "failRate": 44.44,
+        "avgRelativeToSH": 4.03
+      },
+      "D+0/intraday": {
+        "total": 12,
+        "hit": 5,
+        "weak": 2,
+        "fail": 5,
+        "missing": 0,
+        "strictHitRate": 41.67,
+        "usableRate": 58.33,
+        "failRate": 41.67,
+        "avgRelativeToSH": 5.97
+      },
+      "D+0/postclose": {
+        "total": 12,
+        "hit": 3,
+        "weak": 4,
+        "fail": 5,
+        "missing": 0,
+        "strictHitRate": 25.0,
+        "usableRate": 58.33,
+        "failRate": 41.67,
+        "avgRelativeToSH": 3.15
+      },
+      "D+0/preopen": {
+        "total": 12,
+        "hit": 4,
+        "weak": 3,
+        "fail": 5,
+        "missing": 0,
+        "strictHitRate": 33.33,
+        "usableRate": 58.33,
+        "failRate": 41.67,
+        "avgRelativeToSH": 6.03
+      },
+      "D+1": {
+        "total": 14,
+        "hit": 3,
+        "weak": 9,
+        "fail": 2,
+        "missing": 0,
+        "strictHitRate": 21.43,
+        "usableRate": 85.71,
+        "failRate": 14.29,
+        "avgRelativeToSH": -0.33
+      },
+      "D+3": {
+        "total": 14,
+        "hit": 2,
+        "weak": 2,
+        "fail": 10,
+        "missing": 0,
+        "strictHitRate": 14.29,
+        "usableRate": 28.57,
+        "failRate": 71.43,
+        "avgRelativeToSH": -3.84
+      },
+      "D+5": {
+        "total": 3,
+        "hit": 0,
+        "weak": 2,
+        "fail": 1,
+        "missing": 0,
+        "strictHitRate": 0.0,
+        "usableRate": 66.67,
+        "failRate": 33.33,
+        "avgRelativeToSH": -1.96
+      }
+    },
+    "failByRole": [
+      [
+        "持仓修复/MLCC弹性",
+        4
+      ],
+      [
+        "持仓修复/MLCC低吸",
+        4
+      ],
+      [
+        "持仓反包小仓",
+        4
+      ],
+      [
+        "国产算力公告观察",
+        4
+      ],
+      [
+        "算力服务合同观察",
+        3
+      ],
+      [
+        "元件/MLCC候选",
+        2
+      ],
+      [
+        "CPO 4板空间核心",
+        1
+      ],
+      [
+        "PCB/光模块3板辨识度",
+        1
+      ],
+      [
+        "液冷高度情绪锚",
+        1
+      ],
+      [
+        "AI算力容量核心",
+        1
+      ],
+      [
+        "20cm CPO激光芯片",
+        1
+      ],
+      [
+        "持仓/前核心修复",
+        1
+      ],
+      [
+        "持仓/并购重组反包",
+        1
+      ],
+      [
+        "机器人核心观察",
+        1
+      ],
+      [
+        "半导体材料候选",
+        1
+      ],
+      [
+        "AI算力/CPO弹性核心",
+        1
+      ],
+      [
+        "AI算力/CPO容量核心",
+        1
+      ],
+      [
+        "存储弹性核心候选",
+        1
+      ],
+      [
+        "存储核心候选",
+        1
+      ],
+      [
+        "存储容量核心",
+        1
+      ]
+    ]
+  },
+  "outputs": {
+    "json": "data/facts/dplus_monthly_accuracy_summary.json",
+    "md": "wiki/09-统计与进化/2026-07-D+验证月度准确率趋势.md",
+    "svg": ".llm-wiki/dplus-monthly-dashboard/2026-07-dplus-accuracy.svg"
+  }
+}
