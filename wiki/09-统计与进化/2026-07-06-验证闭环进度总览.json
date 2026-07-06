@@ -1,0 +1,83 @@
+{
+  "schema": "73wiki-validation-progress-dashboard-v1",
+  "generatedAt": "2026-07-06 13:40:00",
+  "date": "2026-07-06",
+  "sections": [
+    {
+      "label": "通用D+验证",
+      "path": "data/facts/dplus_validation_results.jsonl",
+      "total": 42,
+      "byStatus": {
+        "resolved": 42
+      }
+    },
+    {
+      "label": "作战室候选票D+0",
+      "path": "data/facts/warroom_candidate_validation_results.jsonl",
+      "total": 63,
+      "byStatus": {
+        "加分": 19,
+        "降权观察": 15,
+        "扣分": 27,
+        "保留观察": 2
+      }
+    },
+    {
+      "label": "作战室候选票D+后续",
+      "path": "data/facts/warroom_candidate_dplus_validation_results.jsonl",
+      "total": 49,
+      "byStatus": {
+        "resolved": 49
+      }
+    },
+    {
+      "label": "飞书校准验证",
+      "path": "data/facts/feishu_calibration_validation_results.jsonl",
+      "total": 14,
+      "byStatus": {
+        "contradicted": 3,
+        "validated": 1,
+        "pending_trade_day": 10
+      }
+    },
+    {
+      "label": "公告事件D+验证",
+      "path": "data/facts/announcement_event_validation_results.jsonl",
+      "total": 19,
+      "byStatus": {
+        "unknown": 19
+      }
+    },
+    {
+      "label": "消息催化评分回测",
+      "path": "raw/11-Codex分析产物/消息催化回测",
+      "total": 4,
+      "byStatus": {
+        "validated": 0,
+        "partial": 0,
+        "failed_high_score": 0,
+        "pending": 4
+      },
+      "rows": [
+        {
+          "date": "2026-07-05",
+          "path": "raw/11-Codex分析产物/消息催化回测/2026-07-05/message-catalyst-backtest.json",
+          "total": 4,
+          "validated": 0,
+          "partial": 0,
+          "failedHighScore": 0,
+          "pending": 4
+        },
+        {
+          "date": "2026-07-06",
+          "path": "raw/11-Codex分析产物/消息催化回测/2026-07-06/message-catalyst-backtest.json",
+          "total": 0,
+          "validated": 0,
+          "partial": 0,
+          "failedHighScore": 0,
+          "pending": 0
+        }
+      ]
+    }
+  ]
+}

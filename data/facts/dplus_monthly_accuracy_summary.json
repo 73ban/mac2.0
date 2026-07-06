@@ -1,9 +1,9 @@
 {
   "schema": "73wiki-dplus-monthly-dashboard-v1",
-  "generatedAt": "2026-07-06 07:58:41",
+  "generatedAt": "2026-07-06 15:04:32",
   "month": "2026-07",
-  "predictionCount": 112,
-  "resultCount": 94,
+  "predictionCount": 167,
+  "resultCount": 105,
   "summary": {
     "byMonth": {
       "2026-06": {
@@ -18,15 +18,15 @@
         "avgRelativeToSH": 0.3
       },
       "2026-07": {
-        "total": 79,
-        "hit": 22,
-        "weak": 19,
-        "fail": 38,
+        "total": 90,
+        "hit": 24,
+        "weak": 26,
+        "fail": 40,
         "missing": 0,
-        "strictHitRate": 27.85,
-        "usableRate": 51.9,
-        "failRate": 48.1,
-        "avgRelativeToSH": 2.81
+        "strictHitRate": 26.67,
+        "usableRate": 55.56,
+        "failRate": 44.44,
+        "avgRelativeToSH": 2.54
       }
     },
     "byDay": {
@@ -95,19 +95,30 @@
         "usableRate": 100.0,
         "failRate": 0.0,
         "avgRelativeToSH": 1.83
+      },
+      "2026-07-06": {
+        "total": 11,
+        "hit": 2,
+        "weak": 7,
+        "fail": 2,
+        "missing": 0,
+        "strictHitRate": 18.18,
+        "usableRate": 81.82,
+        "failRate": 18.18,
+        "avgRelativeToSH": 0.55
       }
     },
     "bySource": {
       "dplus": {
-        "total": 31,
-        "hit": 5,
-        "weak": 13,
-        "fail": 13,
+        "total": 42,
+        "hit": 7,
+        "weak": 20,
+        "fail": 15,
         "missing": 0,
-        "strictHitRate": 16.13,
-        "usableRate": 58.06,
-        "failRate": 41.94,
-        "avgRelativeToSH": -2.13
+        "strictHitRate": 16.67,
+        "usableRate": 64.29,
+        "failRate": 35.71,
+        "avgRelativeToSH": -1.41
       },
       "warroom_d0": {
         "total": 63,
@@ -189,15 +200,15 @@
         "avgRelativeToSH": -3.84
       },
       "D+5": {
-        "total": 3,
-        "hit": 0,
-        "weak": 2,
-        "fail": 1,
+        "total": 14,
+        "hit": 2,
+        "weak": 9,
+        "fail": 3,
         "missing": 0,
-        "strictHitRate": 0.0,
-        "usableRate": 66.67,
-        "failRate": 33.33,
-        "avgRelativeToSH": -1.96
+        "strictHitRate": 14.29,
+        "usableRate": 78.57,
+        "failRate": 21.43,
+        "avgRelativeToSH": 0.02
       }
     },
     "failByRole": [
@@ -223,6 +234,10 @@
       ],
       [
         "元件/MLCC候选",
+        3
+      ],
+      [
+        "PCB候选",
         2
       ],
       [
@@ -275,10 +290,6 @@
       ],
       [
         "存储核心候选",
-        1
-      ],
-      [
-        "存储容量核心",
         1
       ]
     ]

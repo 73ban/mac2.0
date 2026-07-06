@@ -66,6 +66,28 @@ def source_status(name: str, path: Path, *, now: dt.datetime, required: bool = T
     }
 
 
+def longxia_not_due_status(task_name: str, date: str, now: dt.datetime) -> str:
+    config = read_json(ROOT / ".system/longxia-task-schedule.json")
+    delay = int(config.get("syncDelayMinutes") or 10)
+    for task in config.get("tasks") or []:
+        if task.get("name") != task_name:
+            continue
+        hour, minute = [int(x) for x in str(task.get("time")).split(":", 1)]
+        check_at = dt.datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=TZ, hour=hour, minute=minute) + dt.timedelta(minutes=delay)
+        if now < check_at:
+            return f"未到龙虾验收时间{check_at.strftime('%H:%M')}"
+        return ""
+    return ""
+
+
+def scheduled_source_status(name: str, task_name: str, path: Path, *, date: str, now: dt.datetime, required: bool = True) -> dict[str, Any]:
+    row = source_status(name, path, now=now, required=required)
+    not_due = longxia_not_due_status(task_name, date, now)
+    if row["状态"] != "ok" and not_due:
+        row["状态"] = not_due
+    return row
+
+
 def latest_error_file(path: Path) -> dict[str, str]:
     files = sorted(path.glob("*error*.md"), key=lambda p: p.stat().st_mtime, reverse=True) if path.exists() else []
     if not files:
@@ -125,13 +147,13 @@ def build(date: str) -> dict[str, Any]:
     sources = [
         source_status("WeRSS/公众号RAW", ROOT / "raw/05-研报新闻/公众号", now=now),
         source_status("财联社CS财经", ROOT / "raw/05-研报新闻/财联社/CS财经", now=now),
-        source_status("公告RAW", ROOT / "raw/05-研报新闻/公告", now=now, required=is_trade_day),
+        scheduled_source_status("公告RAW", "每日公告+候选池", ROOT / "raw/05-研报新闻/公告" / date, date=date, now=now, required=is_trade_day),
         source_status("同花顺热榜Top100", ROOT / f"raw/04-市场数据/同花顺热榜/{date}", now=now),
         source_status("淘股吧热榜/话题/实盘热帖", ROOT / f"raw/04-市场数据/热榜/{date}", now=now),
         source_status("三榜热度合并", ROOT / f"raw/04-市场数据/三榜热度合并/{date}", now=now),
         source_status("淘股吧实盘赛样本", ROOT / f"raw/09-短线知识/淘股吧实盘赛/{date}", now=now),
         source_status("截图OCR", ROOT / f"raw/08-截图/飞书图片/{date[:4]}/{date[5:7]}/{date[8:10]}", now=now, required=False),
-        source_status("通达信热榜", ROOT / f"raw/04-市场数据/通达信热榜/{date}", now=now, required=is_trade_day),
+        scheduled_source_status("通达信热榜", "通达信热榜TOP100", ROOT / f"raw/04-市场数据/通达信热榜/{date}", date=date, now=now, required=is_trade_day),
         source_status("tdxrs竞价快照", ROOT / f"raw/04-市场数据/tdxrs竞价快照/{date}", now=now, required=is_trade_day),
         source_status("东方财富全市场快照", ROOT / f"raw/04-市场数据/东方财富/{date}", now=now, required=False),
     ]
@@ -144,14 +166,17 @@ def build(date: str) -> dict[str, Any]:
     ]
     hard_issues = []
     for row in sources:
-        if row["状态"] not in ("ok", "目录缺失-非硬问题"):
+        if row["状态"] not in ("ok", "目录缺失-非硬问题") and not str(row["状态"]).startswith("未到龙虾验收时间"):
             hard_issues.append(f"{row['源']}：{row['状态']}")
     if cloud and not cloud.get("ok"):
         hard_issues.append("云数据连接器主链 ok=false")
 
     conclusions = []
     if not hard_issues:
-        conclusions.append("核心RAW写入链路当前可用；今天是非交易日，交易日专属通达信/tdxrs/公告缺当日文件不按硬故障处理。")
+        if is_trade_day:
+            conclusions.append("核心RAW写入链路当前可用；交易日专属通达信/公告等任务按龙虾定时表+10分钟验收，未到点不按硬故障处理。")
+        else:
+            conclusions.append("核心RAW写入链路当前可用；今天是非交易日，交易日专属通达信/tdxrs/公告缺当日文件不按硬故障处理。")
     else:
         conclusions.append("存在需要处理的RAW硬问题：" + "；".join(hard_issues))
     if optional_failures:

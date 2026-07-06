@@ -49,6 +49,7 @@ class Candidate:
     evidence: list[str] = field(default_factory=list)
     risk_hits: set[str] = field(default_factory=set)
     strong_hits: set[str] = field(default_factory=set)
+    company_impacts: list[dict[str, Any]] = field(default_factory=list)
 
     def add(self, score: float, reason: str, evidence: str = "", role: str = "", themes: list[str] | None = None, text: str = "") -> None:
         self.score += score
@@ -69,6 +70,24 @@ class Candidate:
         for word in STRONG_WORDS:
             if word in hay:
                 self.strong_hits.add(word)
+
+    def add_impact(self, row: dict[str, Any]) -> None:
+        impact = {
+            "title": clean(row.get("title"), 80),
+            "type": row.get("company_impact_type") or "",
+            "evidence": row.get("evidence_level") or "",
+            "shortline": row.get("shortline_view") or "",
+            "institution": row.get("institution_view") or "",
+            "horizon": row.get("value_horizon") or "",
+            "valuation": row.get("valuation_logic") or "",
+            "path": row.get("realization_path") or "",
+            "risks": row.get("impact_risks") or "",
+            "source": row.get("path") or "",
+        }
+        key = (impact["title"], impact["type"], impact["source"])
+        existing = {(x.get("title"), x.get("type"), x.get("source")) for x in self.company_impacts}
+        if key not in existing:
+            self.company_impacts.append(impact)
 
 
 def now_text() -> str:
@@ -232,7 +251,18 @@ def add_daily_info(candidates: dict[str, Candidate], date: str) -> None:
             base = min(35, float(row.get("score") or 0) * 0.25)
             if row.get("direction") == "负向/风险":
                 base -= 10
+            impact_type = row.get("company_impact_type") or ""
+            evidence_level = row.get("evidence_level") or ""
+            if impact_type in {"估值重估型", "长期利好/预期差型", "业绩弹性型"}:
+                base += 8
+            if "风险" in impact_type:
+                base -= 8
+            if str(evidence_level).startswith("A-"):
+                base += 5
+            elif str(evidence_level).startswith("D-"):
+                base -= 4
             item.add(base, f"重要信息：{clean(row.get('title'), 60)}；{clean(row.get('reason'), 80)}", row.get("path") or rel(path), "消息催化", row.get("themes") or [], json.dumps(row, ensure_ascii=False))
+            item.add_impact(row)
 
 
 def add_evening_clues(candidates: dict[str, Candidate], date: str) -> None:
@@ -447,6 +477,38 @@ def verify_basis(row: dict[str, Any]) -> list[str]:
     ]
 
 
+def company_impact_summary(item: Candidate) -> dict[str, str]:
+    impacts = item.company_impacts[:5]
+    if not impacts:
+        return {
+            "type": "未形成公司价值判断",
+            "evidence": "-",
+            "shortline": "仅按热榜/消息/持仓强度观察，尚未形成独立公司影响判断。",
+            "institution": "缺少公司价值映射，不能写成长线或估值重估逻辑。",
+            "horizon": "-",
+            "valuation": "-",
+            "path": "-",
+            "risks": "主要风险是只有热度、没有公司证据。",
+        }
+    priority = {"长期风险型": 6, "短线风险型": 6, "估值重估型": 5, "长期利好/预期差型": 4, "业绩弹性型": 4, "短炒型": 2}
+    if item.risk_hits:
+        risk_impacts = [x for x in impacts if "风险" in str(x.get("type") or "")]
+        best = sorted(risk_impacts or impacts, key=lambda x: priority.get(str(x.get("type")), 1), reverse=True)[0]
+    else:
+        best = sorted(impacts, key=lambda x: priority.get(str(x.get("type")), 1), reverse=True)[0]
+    evidence = "、".join(dict.fromkeys(str(x.get("evidence") or "-") for x in impacts))[:120]
+    return {
+        "type": str(best.get("type") or "-"),
+        "evidence": evidence or "-",
+        "shortline": clean(best.get("shortline"), 150),
+        "institution": clean(best.get("institution"), 180),
+        "horizon": clean(best.get("horizon"), 120),
+        "valuation": clean(best.get("valuation"), 180),
+        "path": clean(best.get("path"), 180),
+        "risks": clean(best.get("risks"), 180),
+    }
+
+
 def build(date: str) -> dict[str, Any]:
     candidates: dict[str, Candidate] = {}
     holdings = collect_holdings(date)
@@ -489,6 +551,8 @@ def build(date: str) -> dict[str, Any]:
                 "evidence": item.evidence[:8],
                 "riskHits": sorted(item.risk_hits),
                 "strongHits": sorted(item.strong_hits),
+                "companyImpacts": item.company_impacts[:8],
+                "companyImpactSummary": company_impact_summary(item),
                 "plan": plan,
                 "isHolding": item.code in holding_codes,
                 "entryReason": entry_reason(item, item.code in holding_codes, idx),
@@ -596,12 +660,18 @@ def render_md(payload: dict[str, Any]) -> str:
         lines.append("- 未识别到持仓票，或持仓票暂未进入候选资料池。")
     for row in payload["holdingsAnalysis"]:
         plan = row["plan"]
+        impact = row.get("companyImpactSummary") or {}
         lines.extend(
             [
                 f"### {row['name'] or row['code']} {row['code']}",
                 "",
                 f"- 当前分：{row['score']}；角色：{', '.join(row['roles']) or '-'}",
                 f"- 主模式：{row.get('primaryMode')}；买点类型：{row.get('entryType')}",
+                f"- 公司影响：{impact.get('type')}；证据：{impact.get('evidence')}；兑现周期：{impact.get('horizon')}",
+                f"- 机构/价值逻辑：{impact.get('institution')}",
+                f"- 估值/业绩映射：{impact.get('valuation')}",
+                f"- 兑现路径：{impact.get('path')}",
+                f"- 公司影响风险：{impact.get('risks')}",
                 f"- 我的判断：{plan['我的判断']}",
                 f"- 模式证据：{row.get('modeEvidence')}",
                 f"- 强势依据：{plan['强势依据']}",
@@ -614,11 +684,12 @@ def render_md(payload: dict[str, Any]) -> str:
                 "",
             ]
         )
-    lines.extend(["## 当前Top5", "", "| 排名 | 股票 | 分数 | 角色 | 主模式 | 买点类型 | 入选原因 | 买入触发 | 禁止买入/退出 | 事后验证 |", "|---:|---|---:|---|---|---|---|---|---|---|"])
+    lines.extend(["## 当前Top5", "", "| 排名 | 股票 | 分数 | 角色 | 公司影响 | 证据 | 主模式 | 买点类型 | 入选原因 | 短线触发 | 机构/价值判断 | 禁止买入/退出 |", "|---:|---|---:|---|---|---|---|---|---|---|---|---|"])
     for row in payload["top5"]:
         plan = row["plan"]
+        impact = row.get("companyImpactSummary") or {}
         lines.append(
-            f"| {row['rank']} | {row['name'] or row['code']} {row['code']} | {row['score']} | {plan.get('角色') or plan.get('当前定位')} | {row.get('primaryMode')} | {row.get('entryType')} | {clean(row.get('entryReason'), 140)} | {clean(plan.get('买入触发') or plan.get('加权条件'), 110)} | {clean(plan.get('禁止买入') or plan.get('明天处理'), 110)} | {clean('；'.join(row.get('verifyBasis') or []), 110)} |"
+            f"| {row['rank']} | {row['name'] or row['code']} {row['code']} | {row['score']} | {plan.get('角色') or plan.get('当前定位')} | {impact.get('type','-')} | {clean(impact.get('evidence','-'), 60)} | {row.get('primaryMode')} | {row.get('entryType')} | {clean(row.get('entryReason'), 120)} | {clean(plan.get('买入触发') or plan.get('加权条件'), 100)} | {clean(impact.get('institution','-'), 110)} | {clean(plan.get('禁止买入') or plan.get('明天处理'), 100)} |"
         )
     lines.extend(["", "## 调用证据", "", "| 股票 | 证据 |", "|---|---|"])
     for row in payload["top5"]:
@@ -661,11 +732,17 @@ def render_notify(payload: dict[str, Any], changed: dict[str, Any]) -> str:
     item_no = 1
     for row in holdings:
         plan = row["plan"]
+        impact = row.get("companyImpactSummary") or {}
         lines.extend(
             [
                 f"{item_no}. {row['name'] or row['code']} {row['code']}（持仓处理）",
                 f"   系统结论：{plan.get('我的判断')}；不是无条件加仓。",
                 "   请你校准：明天按这个处理是否合理？风险是不是被我高估/低估？",
+                f"   公司影响：{impact.get('type')}；证据等级：{impact.get('evidence')}；兑现周期：{impact.get('horizon')}",
+                f"   机构/价值逻辑：{impact.get('institution')}",
+                f"   估值/业绩映射：{impact.get('valuation')}",
+                f"   兑现路径：{impact.get('path')}",
+                f"   公司影响风险：{impact.get('risks')}",
                 f"   主模式/买点：{row.get('primaryMode')} / {row.get('entryType')}。",
                 f"   模式证据：{clean(row.get('modeEvidence'), 150)}",
                 f"   我为什么这么想：{clean(row.get('entryReason'), 160)}。",
@@ -683,6 +760,7 @@ def render_notify(payload: dict[str, Any], changed: dict[str, Any]) -> str:
         lines.extend(["二、新开仓/观察候选校准", ""])
     for row in non_holdings:
         plan = row["plan"]
+        impact = row.get("companyImpactSummary") or {}
         if row.get("riskHits"):
             conclusion = "只进入风险复核观察，不是买点"
         elif row.get("rank", 99) <= 3:
@@ -694,6 +772,11 @@ def render_notify(payload: dict[str, Any], changed: dict[str, Any]) -> str:
                 f"{item_no}. {row['name'] or row['code']} {row['code']}（候选观察）",
                 f"   系统结论：{conclusion}。",
                 "   请你校准：它应不应该继续留在作战室Top5？是否只是热度噪音？",
+                f"   公司影响：{impact.get('type')}；证据等级：{impact.get('evidence')}；兑现周期：{impact.get('horizon')}",
+                f"   机构/价值逻辑：{impact.get('institution')}",
+                f"   估值/业绩映射：{impact.get('valuation')}",
+                f"   兑现路径：{impact.get('path')}",
+                f"   公司影响风险：{impact.get('risks')}",
                 f"   主模式/买点：{row.get('primaryMode')} / {row.get('entryType')}。",
                 f"   模式证据：{clean(row.get('modeEvidence'), 150)}",
                 f"   入选原因：{clean(row.get('entryReason'), 160)}。",
@@ -805,6 +888,7 @@ def update_stock_cards(payload: dict[str, Any]) -> None:
         name = row.get("name") or code
         path = WIKI_STOCK / f"{name}-{code}.md"
         marker = f"<!-- dynamic-warroom:{payload['date']}:{code} -->"
+        impact = row.get("companyImpactSummary") or {}
         block = "\n".join(
             [
                 "",
@@ -815,6 +899,12 @@ def update_stock_cards(payload: dict[str, Any]) -> None:
                 f"- 当前分：{row['score']}",
                 f"- 角色：{', '.join(row['roles']) or '-'}",
                 f"- 题材：{', '.join(row['themes']) or '-'}",
+                f"- 公司影响：{impact.get('type','-')}；证据：{impact.get('evidence','-')}；兑现周期：{impact.get('horizon','-')}",
+                f"- 短线资金逻辑：{impact.get('shortline','-')}",
+                f"- 机构/价值逻辑：{impact.get('institution','-')}",
+                f"- 估值/业绩映射：{impact.get('valuation','-')}",
+                f"- 兑现路径：{impact.get('path','-')}",
+                f"- 公司影响风险：{impact.get('risks','-')}",
                 f"- 我的判断：{row['plan'].get('我的判断')}",
                 f"- 处理/触发：{row['plan'].get('买入触发') or row['plan'].get('加权条件')}",
                 f"- 禁止/退出：{row['plan'].get('禁止买入') or row['plan'].get('明天处理')}",
@@ -901,6 +991,8 @@ def write_predictions(payload: dict[str, Any]) -> None:
             "sellPoint": row.get("sellPoint") or "",
             "invalidCondition": row.get("invalidCondition") or "",
             "modeEvidence": row.get("modeEvidence") or "",
+            "companyImpactSummary": row.get("companyImpactSummary") or {},
+            "companyImpacts": row.get("companyImpacts") or [],
             "entryReason": row.get("entryReason") or "",
             "verifyBasis": row.get("verifyBasis") or [],
             "sourcePath": f"wiki/07-作战室/{payload['date']}-动态作战室Top5.md",

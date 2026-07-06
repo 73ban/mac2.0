@@ -106,6 +106,51 @@ THEME_KEYS = (
     "稀土",
 )
 
+LONG_VALUE_KEYS = {
+    "量产": 10,
+    "客户": 8,
+    "订单": 9,
+    "中标": 8,
+    "认证": 7,
+    "供货": 8,
+    "合作": 6,
+    "签署": 6,
+    "产能": 7,
+    "扩产": 7,
+    "国产替代": 9,
+    "先进封装": 9,
+    "玻璃基板": 10,
+    "电子级氢氟酸": 9,
+    "G5级": 8,
+    "供应链": 6,
+}
+
+VALUATION_KEYS = {
+    "估值": 8,
+    "重估": 10,
+    "价值量": 8,
+    "空间": 6,
+    "渗透率": 7,
+    "国产替代": 8,
+    "先进封装": 8,
+    "AI硬件": 8,
+    "产业链": 5,
+    "平台型": 6,
+}
+
+SHORT_SPEC_KEYS = {
+    "热榜": 6,
+    "涨停": 7,
+    "连板": 8,
+    "一字": 7,
+    "异动": 5,
+    "韬定律": 6,
+    "概念": 4,
+    "题材": 4,
+    "发酵": 5,
+    "引爆": 5,
+}
+
 
 @dataclass
 class InfoItem:
@@ -128,6 +173,15 @@ class InfoItem:
     reason: str
     suggested_action: str
     verify: list[str]
+    company_impact_type: str
+    company_impact_summary: str
+    shortline_view: str
+    institution_view: str
+    value_horizon: str
+    evidence_level: str
+    realization_path: str
+    valuation_logic: str
+    impact_risks: str
 
 
 def rel(path: Path) -> str:
@@ -444,6 +498,112 @@ def classify(source: str, text: str, pos_hits: list[str], risk_hits: list[str]) 
     return "单条催化", "正向/待验证" if pos_hits else "观察", "进入作战室候选复核", ["竞价", "涨停", "热榜跃迁", "板块扩散"]
 
 
+def assess_company_impact(source: str, text: str, pos_hits: list[str], risk_hits: list[str], market_score: int) -> dict[str, str]:
+    """Classify what a message means to the company, not just to tomorrow's tape."""
+    long_score, long_hits = keyword_hits(text, LONG_VALUE_KEYS)
+    valuation_score, valuation_hits = keyword_hits(text, VALUATION_KEYS)
+    short_score, short_hits = keyword_hits(text, SHORT_SPEC_KEYS)
+    has_company_evidence = source in {"公告", "互动易", "财联社"} or any(
+        key in text for key in ("确认", "回复", "公告", "签订", "中标", "客户", "供货", "量产", "认证")
+    )
+    has_authoritative_company_evidence = source in {"公告", "互动易"} or (
+        source == "财联社" and any(key in text for key in ("公司公告", "公司表示", "公司回复", "签订", "中标"))
+    )
+
+    if risk_hits:
+        impact_type = "长期风险型" if has_company_evidence else "短线风险型"
+    elif long_score >= 16 and valuation_score >= 8:
+        impact_type = "估值重估型"
+    elif long_score >= 14:
+        impact_type = "长期利好/预期差型"
+    elif any(key in text for key in ("涨价", "缺货", "供给收缩", "订单", "中标", "量产")):
+        impact_type = "业绩弹性型"
+    elif short_score >= 10 or market_score >= 14:
+        impact_type = "短炒型"
+    elif pos_hits:
+        impact_type = "单点催化型"
+    else:
+        impact_type = "噪音/待观察"
+
+    if has_authoritative_company_evidence and (long_score or risk_hits):
+        evidence_level = "A-公司/权威证据"
+    elif has_company_evidence and source in {"财联社", "韭研公社网页", "韭研公社", "公众号"}:
+        evidence_level = "B-第三方产业资料待验证"
+    elif source in {"财联社", "公告", "互动易"}:
+        evidence_level = "B-高可信来源但需映射"
+    elif source in {"三榜合并", "同花顺热榜", "淘股吧热榜", "涨停原因"}:
+        evidence_level = "C-市场热度验证"
+    else:
+        evidence_level = "D-观点/传闻/情绪样本"
+
+    if impact_type in {"估值重估型", "长期利好/预期差型"}:
+        value_horizon = "中长期，需跟踪样品、客户、量产、收入确认"
+    elif impact_type == "业绩弹性型":
+        value_horizon = "短中期，需跟踪价格、订单、产能利用率和利润弹性"
+    elif "风险" in impact_type:
+        value_horizon = "立即影响风险偏好，后续看公司澄清和资金反馈"
+    elif impact_type == "短炒型":
+        value_horizon = "短线为主，若无公司证据容易退潮"
+    else:
+        value_horizon = "暂不能判断，需要更多证据"
+
+    if impact_type == "估值重估型":
+        institution_view = "机构可能关注业务边界和估值体系是否切换，但需要产业证据和财务映射。"
+        valuation_logic = "旧业务估值可能被新产业链空间重估，重点看价值量、客户验证和量产路径。"
+    elif impact_type == "长期利好/预期差型":
+        institution_view = "机构会看预期能否变成订单、收入和利润；短期可能先按主题预期交易。"
+        valuation_logic = "当前可能未贡献业绩，但若兑现会抬高远期收入空间或产业地位。"
+    elif impact_type == "业绩弹性型":
+        institution_view = "机构更容易用价格、销量、毛利率和订单去估算利润弹性。"
+        valuation_logic = "按收入/利润弹性重估，而不是只看题材热度。"
+    elif "风险" in impact_type:
+        institution_view = "机构会先下修确定性或风险偏好，短线资金也可能抢跑撤退。"
+        valuation_logic = "风险信息可能压低估值、打断题材，尤其是澄清、未合作、问询和需求不及预期。"
+    elif impact_type == "短炒型":
+        institution_view = "机构未必买账，更多是游资和散户情绪交易。"
+        valuation_logic = "暂不改变公司内在价值，先按题材热度和资金博弈处理。"
+    else:
+        institution_view = "暂不能形成机构投资判断。"
+        valuation_logic = "缺少收入、利润、客户、产能或估值映射。"
+
+    if risk_hits:
+        shortline_view = "短线先当风险处理，看竞价、跌停/补跌、热榜退潮和板块负反馈。"
+    elif market_score >= 14 or short_hits:
+        shortline_view = "短线有资金关注，必须用竞价、涨停质量、热榜跃迁和板块扩散确认。"
+    else:
+        shortline_view = "短线未充分验证，不能只因逻辑好就买。"
+
+    path_bits = []
+    if long_hits:
+        path_bits.append("公司证据：" + "、".join(long_hits[:4]))
+    if valuation_hits:
+        path_bits.append("估值证据：" + "、".join(valuation_hits[:4]))
+    if short_hits:
+        path_bits.append("短线证据：" + "、".join(short_hits[:4]))
+    if not path_bits:
+        path_bits.append("后续补公告、互动易、研报、价格和市场反馈。")
+
+    risks = []
+    if risk_hits:
+        risks.append("风险词：" + "、".join(risk_hits[:4]))
+    if evidence_level.startswith("D"):
+        risks.append("证据弱，可能只是观点传播。")
+    if impact_type in {"估值重估型", "长期利好/预期差型"}:
+        risks.append("兑现周期长，短线容易先炒预期后回落。")
+
+    return {
+        "company_impact_type": impact_type,
+        "company_impact_summary": f"这条消息主要属于{impact_type}，判断重点不是热度本身，而是是否改变收入、利润、估值体系或产业地位。",
+        "shortline_view": shortline_view,
+        "institution_view": institution_view,
+        "value_horizon": value_horizon,
+        "evidence_level": evidence_level,
+        "realization_path": "；".join(path_bits),
+        "valuation_logic": valuation_logic,
+        "impact_risks": "；".join(risks) or "主要风险是市场不认可或缺少后续验证。",
+    }
+
+
 def build(date: str, limit: int) -> dict[str, Any]:
     market = collect_market_context(date)
     items: list[InfoItem] = []
@@ -486,6 +646,7 @@ def build(date: str, limit: int) -> dict[str, Any]:
                 reason_bits.append("市场验证：" + "、".join(mkt_reasons[:3]))
             if not reason_bits:
                 reason_bits.append("资料源权重较高，进入当日重要信息池。")
+            impact = assess_company_impact(source, text, pos_hits, risk_hits, mkt_score)
             fp_raw = f"{source}|{raw['title']}|{rel(path)}|{','.join(codes)}"
             items.append(
                 InfoItem(
@@ -508,6 +669,7 @@ def build(date: str, limit: int) -> dict[str, Any]:
                     reason="；".join(reason_bits),
                     suggested_action=action,
                     verify=verify,
+                    **impact,
                 )
             )
     dedup: dict[str, InfoItem] = {}
@@ -527,6 +689,7 @@ def build(date: str, limit: int) -> dict[str, Any]:
             "evidence": "公告/互动易/财联社最高，热榜/涨停/龙虎榜次之，淘股吧高手和公众号作为情绪与模式样本。",
             "market": "三榜共振、热榜Top、涨停/一字/连板提高权重。",
             "action": "能落到个股卡、题材卡、作战室或D+验证的条目加权。",
+            "company_impact": "所有消息都必须判断对公司意味着什么：短炒、预期差、业绩弹性、估值重估、长期风险或噪音。热榜只是市场验证，不是判断起点。",
         },
         "rows": [item.__dict__ for item in rows[:limit]],
         "top10": [item.__dict__ for item in top10],
@@ -588,26 +751,28 @@ def render(payload: dict[str, Any]) -> str:
         "",
         "- 总分 = 信号强度 + 证据强度 + 市场验证 + 可行动性。",
         "- 热榜/三榜/涨停原因是市场背景和验证，不等于单条催化。",
+        "- 所有消息都必须单独判断“对公司意味着什么”：短炒、预期差、业绩弹性、估值重估、长期风险或噪音。",
         "- 互动易只有在确认或否认当下炒作逻辑时才进入个股卡；普通股东人数、分红、股价问答不入榜。",
         "",
         "## Top10",
         "",
-        "| 排名 | 分数 | 类型 | 方向 | 信息 | 关联标的/题材 | 为什么重要 | 动作 | 验证 | 来源 |",
-        "|---:|---:|---|---|---|---|---|---|---|---|",
+        "| 排名 | 分数 | 类型 | 公司影响 | 证据 | 信息 | 关联标的/题材 | 短线判断 | 机构/价值判断 | 验证 | 来源 |",
+        "|---:|---:|---|---|---|---|---|---|---|---|---|",
     ]
     for idx, row in enumerate(payload["top10"], start=1):
         stocks = "、".join([*(row.get("stock_names") or []), *(row.get("stock_codes") or []), *(row.get("themes") or [])]) or "-"
         lines.append(
-            f"| {idx} | {row['score']} | {row['category']} | {row['direction']} | {clean(row['title'], 70)} | {clean(stocks, 90)} | {clean(row['reason'], 120)} | {clean(row['suggested_action'], 80)} | {'、'.join(row.get('verify') or [])} | `{row['path']}` |"
+            f"| {idx} | {row['score']} | {row['category']} | {row.get('company_impact_type','-')} | {row.get('evidence_level','-')} | {clean(row['title'], 70)} | {clean(stocks, 90)} | {clean(row.get('shortline_view',''), 100)} | {clean(row.get('institution_view',''), 120)} | {'、'.join(row.get('verify') or [])} | `{row['path']}` |"
         )
     if not payload["top10"]:
-        lines.append("| - | - | - | - | 今日无达到阈值的重要信息 | - | - | - | - | - |")
+        lines.append("| - | - | - | - | - | 今日无达到阈值的重要信息 | - | - | - | - | - |")
     lines.extend(
         [
             "",
             "## 使用边界",
             "",
             "- 这个 Top10 是信息优先级，不是买入清单。",
+            "- 价值判断也不是长线买入结论；它只是判断消息是否可能改变公司收入、利润、估值或产业地位。",
             "- 入榜后仍要看竞价、涨停、一字、热榜跃迁、板块扩散和 D+验证。",
             "- 只有通过验证的内容才沉淀到正式 Wiki 个股卡、题材卡、模式库或错误库。",
         ]
@@ -620,8 +785,8 @@ def render_notify(payload: dict[str, Any]) -> str:
         "【每日消息判断Top10待校准】",
         f"时间：{payload['generatedAt']}",
         "",
-        "判断对象：下面每一条是“消息/题材/个股信息的短线价值判断”，不是股票买卖建议。",
-        "你只需要校准我对消息价值的判断：有效 / 一般 / 无效 / 反向；也可以说高估/低估。",
+        "判断对象：下面每一条是“消息对公司和股价的影响判断”，不是股票买卖建议。",
+        "你只需要校准两件事：1）短线资金会不会认；2）这条消息是否真的改变公司长期价值/估值。",
         "",
         "回复格式：第几条 + 有效/一般/无效/反向/高估/低估 + 一句话原因。",
         "",
@@ -644,8 +809,13 @@ def render_notify(payload: dict[str, Any]) -> str:
                 "   你要判断：这条消息本身对明日短线有没有价值，不是判断所有关联票能不能买。",
                 f"   关联标的/题材：{clean(stocks, 120)}",
                 f"   我当前判断：{conclusion}，分数 {row.get('score', 0)}，方向 {row.get('direction')}",
+                f"   公司影响分类：{row.get('company_impact_type')}；证据等级：{row.get('evidence_level')}；兑现周期：{row.get('value_horizon')}",
                 f"   我的判断逻辑：{'; '.join(logic_parts)}；{row.get('reason')}",
-                f"   我认为可能有用的点：{row.get('suggested_action')}",
+                f"   短线资金逻辑：{row.get('shortline_view')}",
+                f"   机构/价值逻辑：{row.get('institution_view')}",
+                f"   估值/业绩映射：{row.get('valuation_logic')}",
+                f"   兑现路径：{row.get('realization_path')}",
+                f"   主要风险：{row.get('impact_risks')}",
                 f"   我不确定/需要你纠偏：{uncertainty}",
                 f"   后续验证：{'、'.join(row.get('verify') or []) or '竞价、涨停、热榜跃迁、板块扩散'}",
                 "",
@@ -676,7 +846,7 @@ def write_pending_once(payload: dict[str, Any]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate daily important RAW information Top10.")
     parser.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"))
-    parser.add_argument("--limit", type=int, default=50)
+    parser.add_argument("--limit", type=int, default=200)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--notify", action="store_true")
     args = parser.parse_args()

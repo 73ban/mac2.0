@@ -10,7 +10,7 @@ import json
 import re
 from collections import Counter
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -92,6 +92,11 @@ def clean(value: str, limit: int = 180) -> str:
 
 def now_text() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def recent_dates(date: str, days: int = 5) -> list[str]:
+    base = datetime.strptime(date, "%Y-%m-%d").date()
+    return [(base - timedelta(days=i)).isoformat() for i in range(days)]
 
 
 def rule_score(rule: str, themes: list[str], methods: list[str], source_score: int = 0) -> tuple[int, list[str]]:
@@ -285,6 +290,8 @@ def diversify(items: list[LearningItem], limit: int = 10) -> list[LearningItem]:
         by_title[item.title] += 1
         if len(selected) >= limit:
             break
+    if len(selected) >= limit:
+        return selected[:limit]
     selected_ids = {item.fingerprint for item in selected}
     for item in sorted_items:
         if item.fingerprint in selected_ids:
@@ -298,6 +305,19 @@ def diversify(items: list[LearningItem], limit: int = 10) -> list[LearningItem]:
 
 def build(date: str) -> dict[str, Any]:
     items = collect_youzi_items(date) + collect_taoguba_items(date)
+    if len(items) < 10:
+        seen = {item.fingerprint for item in items}
+        for day in recent_dates(date, 5)[1:]:
+            for item in collect_youzi_items(day) + collect_taoguba_items(day):
+                if item.fingerprint in seen:
+                    continue
+                item.kind = f"{item.kind}/近5日补样"
+                items.append(item)
+                seen.add(item.fingerprint)
+                if len(items) >= 80:
+                    break
+            if len(items) >= 80:
+                break
     dedup: dict[str, LearningItem] = {}
     for item in items:
         key = re.sub(r"\s+", "", item.rule).lower()
@@ -322,6 +342,7 @@ def build(date: str) -> dict[str, Any]:
             "重要：必须能说清环境、触发、动作、失效条件中的至少两项，并能落到题材/模式/D+验证。",
             "一般：观点有参考，但缺少触发或失效条件，先留在验证队列。",
             "待理解：口号、观点、经验、无验证对象，先写入 RAW 学习池，不进入正式 Wiki。",
+            "当天样本不足10条时，自动回看近5日高质量RAW补足校准样本，避免自进化训练断档。",
             "飞书每天固定发 10 条学习样本给用户校准；用户纠偏会回写权重。",
         ],
         "top10": [x.__dict__ for x in top],

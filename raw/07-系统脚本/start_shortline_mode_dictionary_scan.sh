@@ -31,5 +31,7 @@ cd "$ROOT"
 /usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_longrun_execution_dashboard.py"
 /usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_watchdog_self_heal.py"
 /usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_automation_watchdog.py" --write
+/usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_longxia_schedule_watch.py" --date "$DATE" --write
+/usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_twelve_task_execution_status.py" --date "$DATE" --write
 
 printf '{"ok":true,"date":"%s","task":"shortline_mode_dictionary_scan"}\n' "$DATE"

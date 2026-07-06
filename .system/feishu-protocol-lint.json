@@ -1,16 +1,8 @@
 {
   "schema": "73wiki-feishu-protocol-lint-v1",
-  "generatedAt": "2026-07-06 08:30:35",
-  "total": 1,
-  "okCount": 1,
+  "generatedAt": "2026-07-06 15:13:21",
+  "total": 0,
+  "okCount": 0,
   "quarantinedCount": 0,
-  "items": [
-    {
-      "file": ".system/feishu-notify-pending/20260706081756-动态作战室Top5变更待校准.md",
-      "question": true,
-      "ok": true,
-      "errors": [],
-      "warnings": []
-    }
-  ]
+  "items": []
 }
