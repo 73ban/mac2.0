@@ -92,6 +92,18 @@ def freshness_check(name: str, root: Path, max_age_minutes: int, *, required: bo
     return CheckResult(name, level, "stale", f"最新产物已 {int(age.total_seconds() // 60)} 分钟未更新，阈值 {max_age_minutes} 分钟", rel(latest), mtime.strftime("%Y-%m-%d %H:%M:%S"))
 
 
+def exact_file_freshness_check(name: str, path: Path, max_age_minutes: int, *, required: bool = True) -> CheckResult:
+    if not path.exists():
+        level = "critical" if required else "warning"
+        return CheckResult(name, level, "missing", f"固定产物不存在：{rel(path)}")
+    mtime = datetime.fromtimestamp(path.stat().st_mtime)
+    age = now() - mtime
+    if age <= timedelta(minutes=max_age_minutes):
+        return CheckResult(name, "ok", "ok", f"固定产物 {int(age.total_seconds() // 60)} 分钟前更新", rel(path), mtime.strftime("%Y-%m-%d %H:%M:%S"))
+    level = "critical" if required else "warning"
+    return CheckResult(name, level, "stale", f"固定产物已 {int(age.total_seconds() // 60)} 分钟未更新，阈值 {max_age_minutes} 分钟", rel(path), mtime.strftime("%Y-%m-%d %H:%M:%S"))
+
+
 def launchctl_checks() -> list[CheckResult]:
     labels = {
         "云数据连接器15分钟总线": "com.73wiki.cloud-data-connectors",
@@ -191,7 +203,8 @@ def time_based_checks(date: str) -> list[CheckResult]:
         freshness_check("同花顺热榜Top100", ROOT / f"raw/04-市场数据/同花顺热榜/{date}", 180, suffixes={".json", ".md"}),
         freshness_check("三榜热度合并", ROOT / f"raw/04-市场数据/三榜热度合并/{date}", 240, suffixes={".json", ".md"}),
         freshness_check("RAW到Wiki/重要信息产物", ROOT / f"raw/11-Codex分析产物/每日重要信息Top10/{date}", 180, required=False, suffixes={".json", ".md"}),
-        freshness_check("动态作战室Top5", ROOT / f"raw/11-Codex分析产物/动态作战室/{date}", 60, required=False, suffixes={".json", ".md"}),
+        exact_file_freshness_check("动态作战室Top5主文件", ROOT / f"raw/11-Codex分析产物/动态作战室/{date}/dynamic-warroom-top5.json", 5, required=False),
+        exact_file_freshness_check("盘中一分钟看盘主文件", ROOT / f"raw/11-Codex分析产物/盘中一分钟看盘/{date}/intraday-minute-watch.json", 5, required=False),
         freshness_check("短线模式词典扫描产物", ROOT / f"raw/11-Codex分析产物/短线模式词典/{date}", 90, required=False, suffixes={".json", ".md"}),
         freshness_check("交易模式页面质量检查", ROOT / f"raw/11-Codex分析产物/交易模式质量检查/{date}", 90, required=False, suffixes={".json", ".md"}),
         freshness_check("交易模式归因缺口审计", ROOT / f"raw/11-Codex分析产物/交易模式归因审计/{date}", 90, required=False, suffixes={".json", ".md"}),

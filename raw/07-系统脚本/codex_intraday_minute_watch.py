@@ -32,6 +32,8 @@ FACTS = ROOT / "data" / "facts" / "intraday_minute_watch_alerts.jsonl"
 
 RISK_WORDS = ("澄清", "问询", "监管", "减持", "亏损", "退潮", "补跌", "跌停", "负反馈", "炸板", "天地板", "核按钮")
 STRONG_WORDS = ("涨停", "连板", "一字", "回封", "弱转强", "主线", "涨价", "订单", "量产", "并购", "重组", "英伟达", "算力", "机器人", "存储", "半导体")
+OFFICIAL_RISK_SOURCE_WORDS = ("公告", "互动问答", "互动易", "公司回复", "官方确认", "官方辟谣", "问询函", "监管函", "减持公告", "澄清公告")
+HARD_RISK_WORDS = ("澄清", "问询", "监管", "减持", "亏损", "跌停", "炸板", "天地板", "核按钮")
 CODE_RE = re.compile(r"(?<!\d)(?:00[0-3]\d{3}|30[0-2]\d{3}|60[0-5]\d{3}|68[89]\d{3}|8\d{5})(?!\d)")
 
 
@@ -115,6 +117,27 @@ def stock_text(row: dict[str, Any]) -> str:
     return " ".join(str(x or "") for x in fields)
 
 
+def holding_risk_evidence(row: dict[str, Any]) -> dict[str, Any]:
+    """Separate real risk evidence from generic risk-control templates."""
+    source_fields = [
+        ";".join(row.get("reasons") or []),
+        ";".join(row.get("evidence") or []),
+        json.dumps(row.get("companyImpacts") or [], ensure_ascii=False),
+    ]
+    source_text = " ".join(source_fields)
+    official = any(word in source_text for word in OFFICIAL_RISK_SOURCE_WORDS)
+    risks = [word for word in RISK_WORDS if word in source_text]
+    hard = [word for word in risks if word in HARD_RISK_WORDS]
+    weak_only = bool(risks) and not official and any(word in source_text for word in ("证据弱", "观点", "传闻", "情绪样本", "市场热度验证"))
+    return {
+        "risks": risks,
+        "hard": hard,
+        "official": official,
+        "weakOnly": weak_only,
+        "sourceText": source_text,
+    }
+
+
 def load_warroom(date: str) -> dict[str, Any]:
     return read_json(RAW / "11-Codex分析产物" / "动态作战室" / date / "dynamic-warroom-top5.json", {})
 
@@ -155,11 +178,11 @@ def hotlist_status(date: str) -> list[dict[str, str]]:
 def build_holding_alerts(warroom: dict[str, Any]) -> list[Alert]:
     alerts: list[Alert] = []
     for row in warroom.get("holdingsAnalysis") or []:
-        text = stock_text(row)
-        risks = [word for word in RISK_WORDS if word in text]
-        strong = [word for word in STRONG_WORDS if word in text]
-        if risks:
-            level = "S" if any(word in risks for word in ("澄清", "监管", "问询", "跌停", "炸板", "退潮")) else "A"
+        evidence = holding_risk_evidence(row)
+        risks = evidence["risks"]
+        strong = [word for word in STRONG_WORDS if word in stock_text(row)]
+        if risks and evidence["official"] and evidence["hard"]:
+            level = "S" if any(word in evidence["hard"] for word in ("澄清", "监管", "问询", "跌停", "炸板")) else "A"
             alerts.append(
                 Alert(
                     level=level,
@@ -167,14 +190,32 @@ def build_holding_alerts(warroom: dict[str, Any]) -> list[Alert]:
                     subject=code_name(row),
                     conclusion="持仓票需要优先防守复核",
                     reasons=[
-                        f"命中风险词：{', '.join(risks[:6])}",
-                        clean((row.get("plan") or {}).get("风险依据") or (row.get("plan") or {}).get("明天处理"), 120),
+                        f"真实风险证据：{', '.join(risks[:6])}",
+                        f"证据来源：{'官方/公司/公告类' if evidence['official'] else '非官方但命中硬风险词'}",
                         clean((row.get("companyImpactSummary") or {}).get("risks"), 120),
                     ],
                     suggestion="盘中先看竞价/开盘承接、板块核心反馈和热榜是否退潮；不满足承接时优先降仓或不加仓。",
                     invalidation="风险词被官方确认解除，且板块核心回封、热榜不退、持仓票强于同题材核心。",
                     verification=["开盘承接", "分时均线", "板块核心炸板/回封", "热榜排名变化", "D+1溢价"],
                     signature=signature(["holding-risk", str(row.get("code")), ",".join(risks)]),
+                )
+            )
+        elif risks and evidence["weakOnly"]:
+            alerts.append(
+                Alert(
+                    level="B",
+                    category="持仓弱风险",
+                    subject=code_name(row),
+                    conclusion="持仓票有弱风险词，但证据不足，不推送打扰",
+                    reasons=[
+                        f"弱风险词：{', '.join(risks[:6])}",
+                        "来源偏观点/传闻/市场热度，不能当作真实利空。",
+                        clean((row.get("companyImpactSummary") or {}).get("risks"), 120),
+                    ],
+                    suggestion="只写入盘中记录；等官方确认、热榜退潮、板块核心负反馈或盘口走弱后再升级。",
+                    invalidation="官方证据缺失且盘口/板块继续强，弱风险降权。",
+                    verification=["官方确认/辟谣", "热榜退潮", "板块核心反馈", "D+1溢价"],
+                    signature=signature(["holding-weak-risk", str(row.get("code")), ",".join(risks)]),
                 )
             )
         elif strong and row.get("isHolding"):
@@ -192,6 +233,38 @@ def build_holding_alerts(warroom: dict[str, Any]) -> list[Alert]:
                 )
             )
     return alerts
+
+
+def build_top20_delta_alerts(warroom: dict[str, Any], prev_state: dict[str, Any]) -> list[Alert]:
+    rows = [row for row in (warroom.get("allCandidates") or [])[:20] if isinstance(row, dict)]
+    current = [str(row.get("code") or "") for row in rows if row.get("code")]
+    previous = [str(x) for x in (prev_state.get("lastTop20") or [])]
+    if not current or not previous:
+        return []
+    added = [code for code in current if code not in previous]
+    removed = [code for code in previous if code not in current]
+    if not added and not removed:
+        return []
+    by_code = {str(row.get("code")): row for row in rows}
+    reasons: list[str] = []
+    for code in added[:5]:
+        row = by_code.get(code) or {}
+        reasons.append(f"调入Top20：{code_name(row)}，{clean(row.get('entryReason'), 90)}")
+    for code in removed[:5]:
+        reasons.append(f"调出Top20：{code}")
+    return [
+        Alert(
+            level="B",
+            category="作战室Top20变化",
+            subject="动态作战室Top20",
+            conclusion="Top20池发生变化，先记录不打扰",
+            reasons=reasons,
+            suggestion="只写入RAW；如果调入票连续上升并叠加热榜/成交额/涨停质量，再升级为A。",
+            invalidation="下一轮跌出Top20或缺少新增证据。",
+            verification=["下一轮Top20持续性", "热榜跃迁", "成交额排名", "D+0强弱"],
+            signature=signature(["warroom-top20", ",".join(added), ",".join(removed)]),
+        )
+    ]
 
 
 def build_warroom_change_alerts(warroom: dict[str, Any]) -> list[Alert]:
@@ -292,8 +365,8 @@ def build_important_alerts(date: str, important: dict[str, Any], catalyst: dict[
     return alerts
 
 
-def dedupe_for_notify(alerts: list[Alert], force: bool) -> tuple[list[Alert], dict[str, Any]]:
-    state = read_json(STATE, {})
+def dedupe_for_notify(alerts: list[Alert], force: bool, state: dict[str, Any] | None = None) -> tuple[list[Alert], dict[str, Any]]:
+    state = state or read_json(STATE, {})
     sent = set(state.get("sent") or [])
     pushable = [a for a in alerts if a.level in {"S", "A"}]
     fresh = [a for a in pushable if force or a.signature not in sent]
@@ -388,14 +461,21 @@ def alert_to_dict(alert: Alert) -> dict[str, Any]:
 
 
 def build(date: str, force_notify: bool = False) -> dict[str, Any]:
+    state = read_json(STATE, {})
     warroom = load_warroom(date)
     important = load_important(date)
     catalyst = load_catalyst()
     alerts: list[Alert] = []
     alerts.extend(build_holding_alerts(warroom))
     alerts.extend(build_warroom_change_alerts(warroom))
+    alerts.extend(build_top20_delta_alerts(warroom, state))
     alerts.extend(build_important_alerts(date, important, catalyst))
-    fresh_notify, _ = dedupe_for_notify(alerts, force_notify)
+    fresh_notify, state = dedupe_for_notify(alerts, force_notify, state)
+    top20 = [str(row.get("code") or "") for row in (warroom.get("allCandidates") or [])[:20] if isinstance(row, dict) and row.get("code")]
+    if top20:
+        state["lastTop20"] = top20
+        state["lastTop20UpdatedAt"] = now_text()
+        write_json(STATE, state)
     notify_paths = [rel(write_notify(date, alert)) for alert in fresh_notify]
     for alert in alerts:
         append_jsonl(
