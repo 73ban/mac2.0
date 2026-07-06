@@ -72,6 +72,21 @@ def append_jsonl(path: Path, value: dict[str, Any]) -> None:
         handle.write(json.dumps(value, ensure_ascii=False) + "\n")
 
 
+def existing_alert_keys(path: Path) -> set[str]:
+    keys: set[str] = set()
+    if not path.exists():
+        return keys
+    for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
+        try:
+            item = json.loads(line)
+        except Exception:
+            continue
+        key = f"{item.get('date')}:{item.get('signature')}"
+        if item.get("date") and item.get("signature"):
+            keys.add(key)
+    return keys
+
+
 def clean(value: Any, limit: int = 160) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip().replace("|", "/")[:limit]
 
@@ -477,7 +492,11 @@ def build(date: str, force_notify: bool = False) -> dict[str, Any]:
         state["lastTop20UpdatedAt"] = now_text()
         write_json(STATE, state)
     notify_paths = [rel(write_notify(date, alert)) for alert in fresh_notify]
+    existing_keys = existing_alert_keys(FACTS)
     for alert in alerts:
+        fact_key = f"{date}:{alert.signature}"
+        if fact_key in existing_keys:
+            continue
         append_jsonl(
             FACTS,
             {
@@ -488,6 +507,7 @@ def build(date: str, force_notify: bool = False) -> dict[str, Any]:
                 "verificationStatus": "pending",
             },
         )
+        existing_keys.add(fact_key)
     payload = {
         "schema": "73wiki-intraday-minute-watch-v1",
         "date": date,

@@ -205,6 +205,8 @@ def time_based_checks(date: str) -> list[CheckResult]:
         freshness_check("RAW到Wiki/重要信息产物", ROOT / f"raw/11-Codex分析产物/每日重要信息Top10/{date}", 180, required=False, suffixes={".json", ".md"}),
         exact_file_freshness_check("动态作战室Top5主文件", ROOT / f"raw/11-Codex分析产物/动态作战室/{date}/dynamic-warroom-top5.json", 5, required=False),
         exact_file_freshness_check("盘中一分钟看盘主文件", ROOT / f"raw/11-Codex分析产物/盘中一分钟看盘/{date}/intraday-minute-watch.json", 5, required=False),
+        exact_file_freshness_check("盘中一分钟提醒验证", ROOT / f"raw/11-Codex分析产物/盘中一分钟提醒验证/{date}/intraday-alert-validation.json", 10, required=False),
+        exact_file_freshness_check("飞书Codex任务收件箱", ROOT / f"raw/10-飞书交易沟通/任务指令/{date}/codex-task-inbox.json", 10, required=False),
         freshness_check("短线模式词典扫描产物", ROOT / f"raw/11-Codex分析产物/短线模式词典/{date}", 90, required=False, suffixes={".json", ".md"}),
         freshness_check("交易模式页面质量检查", ROOT / f"raw/11-Codex分析产物/交易模式质量检查/{date}", 90, required=False, suffixes={".json", ".md"}),
         freshness_check("交易模式归因缺口审计", ROOT / f"raw/11-Codex分析产物/交易模式归因审计/{date}", 90, required=False, suffixes={".json", ".md"}),

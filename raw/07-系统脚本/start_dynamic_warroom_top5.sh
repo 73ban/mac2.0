@@ -21,5 +21,13 @@ cd "$ROOT"
   --write \
   --apply-wiki
 
+/usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_intraday_alert_validation.py" \
+  --date "$DATE" \
+  --write
+
+/usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_feishu_task_inbox.py" \
+  --date "$DATE" \
+  --write
+
 /usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_feishu_protocol_lint.py" \
   --write

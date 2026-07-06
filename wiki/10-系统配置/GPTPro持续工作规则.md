@@ -76,6 +76,8 @@ wiki/10-系统配置/Wiki与Codex智能学习十项硬规则.md
 ```text
 raw/07-系统脚本/start_dynamic_warroom_top5.sh
 raw/07-系统脚本/codex_intraday_minute_watch.py
+raw/07-系统脚本/codex_intraday_alert_validation.py
+raw/07-系统脚本/codex_feishu_task_inbox.py
 wiki/10-系统配置/盘中一分钟自动看盘与提醒规则.md
 ```
 
@@ -84,6 +86,7 @@ wiki/10-系统配置/盘中一分钟自动看盘与提醒规则.md
 - 不调用付费 `tdx_quotes` / `tdx_kline`。
 - 只读取本机 RAW、已同步快照、免费行情/热榜产物和龙虾落盘结果。
 - 扫描频率是 1 分钟，但飞书只推真正需要用户决策的 S/A 级变化。
+- 飞书下任务必须带 `【Codex任务】` 或 `#Codex任务`，进入任务收件箱后再执行和回写。
 
 ## 禁止浪费 token
 
