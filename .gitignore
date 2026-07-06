@@ -24,6 +24,12 @@ node_modules/
 
 # Logs, locks, local notification history
 *.log
+.system/*
+!.system/automation-watchdog.json
+!.system/codex-longrun-queue.json
+!.system/feishu-protocol-lint.json
+!.system/scripts/
+!.system/scripts/**
 .system/logs/
 .system/*.lock
 .system/feishu-notify-pending/
