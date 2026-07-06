@@ -168,8 +168,14 @@ def build(date: str) -> dict[str, Any]:
     for row in sources:
         if row["状态"] not in ("ok", "目录缺失-非硬问题") and not str(row["状态"]).startswith("未到龙虾验收时间"):
             hard_issues.append(f"{row['源']}：{row['状态']}")
-    if cloud and not cloud.get("ok"):
-        hard_issues.append("云数据连接器主链 ok=false")
+    cloud_required_results = cloud.get("results") or {}
+    cloud_required_failures = [
+        name
+        for name, item in cloud_required_results.items()
+        if item.get("ok") is False and not item.get("skipped")
+    ]
+    if cloud and not cloud.get("ok") and cloud_required_failures:
+        hard_issues.append("云数据连接器主链失败：" + "、".join(cloud_required_failures))
 
     conclusions = []
     if not hard_issues:

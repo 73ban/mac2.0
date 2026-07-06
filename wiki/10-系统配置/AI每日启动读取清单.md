@@ -21,6 +21,7 @@
 - `purpose.md`
 - `wiki/00-总纲/20万小资金做大与AI超短进化总控.md`
 - `wiki/10-系统配置/GPTPro持续工作规则.md`
+- `wiki/10-系统配置/Wiki与Codex智能学习十项硬规则.md`
 - `raw/00-GPTPro任务/YYYY-MM-DD-GPTPro持续工作总队列.md`
 
 AI 必须知道两个总目标：
