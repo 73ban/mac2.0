@@ -16,5 +16,10 @@ cd "$ROOT"
   --date "$DATE" \
   --write
 
+/usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_intraday_minute_watch.py" \
+  --date "$DATE" \
+  --write \
+  --apply-wiki
+
 /usr/bin/python3 "$ROOT/raw/07-系统脚本/codex_feishu_protocol_lint.py" \
   --write
