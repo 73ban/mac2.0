@@ -31,18 +31,18 @@ wiki/09-统计与进化/YYYY-MM-DD-龙虾定时任务验收.md
 
 | 时间 | 验收 | 任务 | 频率 | RAW路径 |
 |---|---|---|---|---|
-| 07:20 | 07:30 | 美股复盘 | daily | `raw/05-研报新闻/财联社/CS财经/美股` |
+| 07:20 | 07:30 | 美股复盘 | daily | `raw/05-研报新闻/财联社/CS财经/美股` 或 `raw/05-研报新闻/美股复盘/YYYY-MM-DD` |
 | 08:20 | 08:30 | 日韩早报（科技链） | daily | `raw/05-研报新闻/日韩早报/YYYY-MM-DD` |
-| 09:25 | 09:35 | 竞价扫描弱转强 | trade_day | `raw/04-市场数据/tdxrs竞价快照/YYYY-MM-DD` |
+| 09:25 | 09:35 | 竞价扫描弱转强 | trade_day | `raw/04-市场数据/tdxrs竞价快照/YYYY-MM-DD` 或 `raw/04-市场数据/竞价弱转强/YYYY-MM-DD` |
 | 09:35 | 09:45 | 早盘主线板块分析 | trade_day | `raw/04-市场数据/早盘主线板块分析/YYYY-MM-DD` |
 | 10:30 | 10:40 | 午前扫描 | trade_day | `raw/04-市场数据/午前扫描/YYYY-MM-DD` |
 | 12:30 | 12:40 | 午盘复盘 | trade_day | `raw/04-市场数据/午盘复盘/YYYY-MM-DD` 或 `raw/02-每日复盘/YYYY-MM-DD` |
-| 13:10 | 13:20 | 午后异动扫描 | trade_day | `raw/04-市场数据/午后异动扫描/YYYY-MM-DD` |
+| 13:10 | 13:20 | 午后异动扫描 | trade_day | `raw/04-市场数据/午后异动扫描/YYYY-MM-DD` 或 `raw/04-市场数据/午后异动/YYYY-MM-DD` |
 | 14:30 | 14:40 | 收盘前扫描 | trade_day | `raw/04-市场数据/收盘前扫描/YYYY-MM-DD` |
-| 15:10 | 15:20 | 收盘数据落盘（6模块） | trade_day | `raw/04-市场数据/收盘全套/YYYY-MM-DD` |
+| 15:10 | 15:20 | 收盘数据落盘（6模块） | trade_day | `raw/04-市场数据/收盘全套/YYYY-MM-DD` 或 `raw/04-市场数据/收盘基础数据/YYYY-MM-DD` |
 | 16:00 | 16:10 | 涨停催化日报 | trade_day | `raw/04-市场数据/涨停催化日报/YYYY-MM-DD` |
 | 17:10 | 17:20 | 龙虎榜全量日报 | trade_day | `raw/04-市场数据/龙虎榜全量/YYYY-MM-DD` |
-| 18:30 | 18:40 | 通达信热榜TOP100 | trade_day | `raw/04-市场数据/通达信热榜/YYYY-MM-DD` |
+| 18:30 | 18:40 | 通达信热榜TOP100 | trade_day | `raw/04-市场数据/通达信热榜/YYYY-MM-DD` 或 `raw/04-市场数据/通达信热榜TOP100/YYYY-MM-DD` |
 | 22:00 | 22:10 | 每日公告+候选池 | daily | `raw/05-研报新闻/公告/YYYY-MM-DD` |
 | 周日17:30 | 17:40 | 限售解禁周报 | sunday | `raw/05-研报新闻/限售解禁周报/YYYY-MM-DD` |
 | 周日19:00 | 19:10 | 板块成分股全量 | sunday | `raw/04-市场数据/板块成分股/YYYY-MM-DD` |

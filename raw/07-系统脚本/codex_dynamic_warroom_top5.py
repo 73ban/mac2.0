@@ -200,23 +200,78 @@ def load_evening(date: str) -> dict[str, Any]:
     return read_json(OUT_ROOT.parent / "晚间个股线索" / date / "evening-stock-news-radar.json", {})
 
 
+def extract_name_near_code(text: str, code: str) -> str:
+    for pattern in [
+        rf"\|\s*{code}\s*\|\s*([^|\n]+?)\s*\|",
+        rf"{code}\s*\|\s*([\u4e00-\u9fa5A-Za-z0-9＊*STst]{{2,12}})",
+        rf"{code}\s+([\u4e00-\u9fa5A-Za-z0-9＊*STst]{{2,12}})",
+    ]:
+        m = re.search(pattern, text)
+        if m:
+            name = clean(m.group(1), 16)
+            if 1 < len(name) <= 16 and name not in {"名称", "股票名称"}:
+                return name
+    return ""
+
+
+def parse_holdings_section(text: str, source: str, markers: tuple[str, ...]) -> list[dict[str, str]]:
+    for marker in markers:
+        if marker not in text:
+            continue
+        section = text.split(marker, 1)[1]
+        section = re.split(r"\n##\s+", section, maxsplit=1)[0]
+        rows: list[dict[str, str]] = []
+        for line in section.splitlines():
+            if "|" not in line or not CODE_RE.search(line):
+                continue
+            code = code_norm(line)
+            if not code:
+                continue
+            if re.search(r"清仓|已清|期末\s*0|预估期末\s*\|\s*0|0（清仓）", line):
+                continue
+            if not re.search(r"持有|新建|加仓|\+\d|期末|当前持仓|终态持仓", line):
+                continue
+            rows.append({"code": code, "name": extract_name_near_code(line, code), "source": source})
+        if rows:
+            dedup: dict[str, dict[str, str]] = {}
+            for row in rows:
+                dedup[row["code"]] = row
+            return list(dedup.values())
+    return []
+
+
+def collect_holdings_from_terminal_sources(date: str) -> list[dict[str, str]]:
+    files = [
+        RAW / "02-每日复盘" / f"{date}-复盘.md",
+        ROOT / "wiki" / "06-持仓与资金管理" / f"{date}-交割单.md",
+        RAW / "01-交割单" / date / "交割单.md",
+    ]
+    markers = (
+        "## 终态持仓",
+        "## 当前持仓表",
+        "## 5. 持仓与资金",
+        "## 三、当日持仓变动",
+        "## 当日持仓变动",
+    )
+    for path in files:
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        rows = parse_holdings_section(text, rel(path), markers)
+        if rows:
+            return rows
+    return []
+
+
 def collect_holdings(date: str) -> list[dict[str, str]]:
+    terminal_rows = collect_holdings_from_terminal_sources(date)
+    if terminal_rows:
+        return terminal_rows
     evening = load_evening(date)
     rows = evening.get("持仓票") or []
     if rows:
         return [{"code": code_norm(row.get("股票代码")), "name": row.get("股票名称") or "", "source": row.get("来源文件") or ""} for row in rows if code_norm(row.get("股票代码"))]
-    paths = sorted((RAW / "01-交割单").rglob("交割单.md"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if not paths:
-        return []
-    text = paths[0].read_text(encoding="utf-8", errors="ignore")
-    rows = []
-    for code in sorted(set(CODE_RE.findall(text))):
-        name = ""
-        m = re.search(rf"{code}\s*\|\s*([\u4e00-\u9fa5A-Za-z0-9＊*STst]{{2,12}})", text)
-        if m:
-            name = m.group(1)
-        rows.append({"code": code, "name": name, "source": rel(paths[0])})
-    return rows[:8]
+    return []
 
 
 def add_three_board(candidates: dict[str, Candidate], date: str) -> None:

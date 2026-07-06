@@ -1,8 +1,18 @@
 {
   "schema": "73wiki-feishu-protocol-lint-v1",
-  "generatedAt": "2026-07-06 15:54:28",
-  "total": 0,
-  "okCount": 0,
+  "generatedAt": "2026-07-06 18:53:35",
+  "total": 1,
+  "okCount": 1,
   "quarantinedCount": 0,
-  "items": []
+  "items": [
+    {
+      "file": ".system/feishu-notify-pending/2026-07-06-龙虾复盘质量提醒.md",
+      "question": false,
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "通知型消息建议显式写明无需回复"
+      ]
+    }
+  ]
 }
