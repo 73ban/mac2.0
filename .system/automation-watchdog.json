@@ -1,9 +1,9 @@
 {
   "schema": "73wiki-automation-watchdog-v1",
   "date": "2026-07-06",
-  "generatedAt": "2026-07-06 07:58:43",
-  "status": "critical",
-  "criticalCount": 1,
+  "generatedAt": "2026-07-06 08:13:55",
+  "status": "ok",
+  "criticalCount": 0,
   "warningCount": 0,
   "checks": [
     {
@@ -114,7 +114,7 @@
       "name": "WeRSS/公众号RAW写入",
       "level": "ok",
       "status": "ok",
-      "detail": "最新产物 0 分钟前更新",
+      "detail": "最新产物 15 分钟前更新",
       "latest_path": "raw/05-研报新闻/公众号/媒体号/通达信趋势财经/2026-07-06_8acd85c96158.md",
       "latest_time": "2026-07-06 07:58:39"
     },
@@ -122,33 +122,33 @@
       "name": "财联社CS财经",
       "level": "ok",
       "status": "ok",
-      "detail": "最新产物 2 分钟前更新",
-      "latest_path": "raw/05-研报新闻/财联社/CS财经/环球市场/2026-07-06-213527-全球首个针对本迪布焦型埃博拉病毒的临床试验启动-722b5029.md",
-      "latest_time": "2026-07-06 07:56:26"
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/05-研报新闻/财联社/CS财经/环球市场/2026-07-06-213533-三星电子股价上涨1.9%，SK海力士上涨0.3%。-b5835e3e.md",
+      "latest_time": "2026-07-06 08:13:43"
     },
     {
       "name": "同花顺热榜Top100",
       "level": "ok",
       "status": "ok",
-      "detail": "最新产物 2 分钟前更新",
+      "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/04-市场数据/同花顺热榜/2026-07-06/ths-hot-top100.md",
-      "latest_time": "2026-07-06 07:56:29"
+      "latest_time": "2026-07-06 08:13:47"
     },
     {
       "name": "三榜热度合并",
-      "level": "critical",
-      "status": "missing",
-      "detail": "目录无可用产物：raw/04-市场数据/三榜热度合并/2026-07-06",
-      "latest_path": "",
-      "latest_time": ""
+      "level": "ok",
+      "status": "ok",
+      "detail": "最新产物 0 分钟前更新",
+      "latest_path": "raw/04-市场数据/三榜热度合并/2026-07-06/三榜热度合并.md",
+      "latest_time": "2026-07-06 08:13:18"
     },
     {
       "name": "RAW到Wiki/重要信息产物",
       "level": "ok",
       "status": "ok",
-      "detail": "最新产物 0 分钟前更新",
+      "detail": "最新产物 2 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/每日重要信息Top10/2026-07-06/daily-important-info-top10.md",
-      "latest_time": "2026-07-06 07:58:42"
+      "latest_time": "2026-07-06 08:11:36"
     },
     {
       "name": "动态作战室Top5",
@@ -156,7 +156,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/动态作战室/2026-07-06/dynamic-warroom-evolution.md",
-      "latest_time": "2026-07-06 07:58:42"
+      "latest_time": "2026-07-06 08:12:55"
     },
     {
       "name": "短线模式词典扫描产物",
@@ -164,7 +164,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/短线模式词典/2026-07-06/模式词频扫描.md",
-      "latest_time": "2026-07-06 07:57:49"
+      "latest_time": "2026-07-06 08:13:45"
     },
     {
       "name": "交易模式页面质量检查",
@@ -172,7 +172,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/交易模式质量检查/2026-07-06/mode-page-lint.md",
-      "latest_time": "2026-07-06 07:57:49"
+      "latest_time": "2026-07-06 08:13:45"
     },
     {
       "name": "交易模式归因缺口审计",
@@ -180,7 +180,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/交易模式归因审计/2026-07-06/trade-mode-attribution-audit.md",
-      "latest_time": "2026-07-06 07:57:49"
+      "latest_time": "2026-07-06 08:13:45"
     },
     {
       "name": "逐笔交易模式归因",
@@ -188,15 +188,15 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/交易模式逐笔归因/2026-07-06/recent-trade-mode-attribution.md",
-      "latest_time": "2026-07-06 07:57:49"
+      "latest_time": "2026-07-06 08:13:46"
     },
     {
       "name": "交易模式D+验证",
       "level": "ok",
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
-      "latest_path": "raw/11-Codex分析产物/交易模式D+验证/2026-07-06/trade-mode-dplus.md",
-      "latest_time": "2026-07-06 07:57:56"
+      "latest_path": "raw/11-Codex分析产物/交易模式D+验证/2026-07-06/trade-mode-stats-to-wiki.json",
+      "latest_time": "2026-07-06 08:13:53"
     },
     {
       "name": "大赚大亏日模式归因",
@@ -204,7 +204,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/交易模式大赚大亏日归因/2026-07-06/trade-mode-bigday-review.md",
-      "latest_time": "2026-07-06 07:57:56"
+      "latest_time": "2026-07-06 08:13:53"
     },
     {
       "name": "Codex长期运行驾驶舱",
@@ -212,7 +212,7 @@
       "status": "ok",
       "detail": "最新产物 0 分钟前更新",
       "latest_path": "raw/11-Codex分析产物/Codex长期运行驾驶舱/2026-07-06/codex-longrun-dashboard.md",
-      "latest_time": "2026-07-06 07:57:56"
+      "latest_time": "2026-07-06 08:13:53"
     },
     {
       "name": "淘股吧热榜100",

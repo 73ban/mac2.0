@@ -45,6 +45,11 @@ MODE_RULES = [
     ("后排不碰", ["后排", "杂毛", "方向对票不对", "不碰"], "出现后排规避语言"),
 ]
 
+GENERATED_BLOCKS = [
+    ("<!-- codex-trade-mode-backfill:start -->", "<!-- codex-trade-mode-backfill:end -->"),
+    ("<!-- codex-dplus-stats:start -->", "<!-- codex-dplus-stats:end -->"),
+]
+
 
 def read_text(path: Path) -> str:
     data = path.read_bytes()
@@ -52,10 +57,17 @@ def read_text(path: Path) -> str:
         return ""
     for encoding in ("utf-8", "gb18030", "gbk"):
         try:
-            return data.decode(encoding)
+            return strip_generated_blocks(data.decode(encoding))
         except UnicodeDecodeError:
             continue
-    return data.decode("utf-8", errors="ignore")
+    return strip_generated_blocks(data.decode("utf-8", errors="ignore"))
+
+
+def strip_generated_blocks(text: str) -> str:
+    for start, end in GENERATED_BLOCKS:
+        pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
+        text = pattern.sub("", text)
+    return text
 
 
 def write_text(path: Path, text: str) -> None:
@@ -79,6 +91,12 @@ def append_jsonl(path: Path, rows: list[dict]) -> None:
             if row.get("attribution_id") in seen:
                 continue
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def replace_jsonl(path: Path, rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    text = "\n".join(json.dumps(row, ensure_ascii=False) for row in rows)
+    path.write_text(text + ("\n" if text else ""), encoding="utf-8")
 
 
 def rel(path: Path | None) -> str:
@@ -443,6 +461,7 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=30)
     parser.add_argument("--date", action="append", help="指定日期，可重复。默认自动取最近日期。")
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--replace", action="store_true", help="重写事实层JSONL，适合全量重跑，避免生成块污染或旧规则残留。")
     args = parser.parse_args()
 
     dates = sorted(args.date, reverse=True) if args.date else discover_dates(args.limit)
@@ -461,7 +480,10 @@ def main() -> int:
         write_text(out_dir / "recent-trade-mode-attribution.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
         write_text(out_dir / "recent-trade-mode-attribution.md", render_md(rows, dates))
         write_text(WIKI_STATS / f"{today}-逐笔交易模式归因汇总.md", render_summary(rows))
-        append_jsonl(FACTS, rows)
+        if args.replace:
+            replace_jsonl(FACTS, rows)
+        else:
+            append_jsonl(FACTS, rows)
     print(json.dumps({"ok": True, "dates": len(dates), "rows": len(rows), "output": rel(out_dir / "recent-trade-mode-attribution.md") if args.write else ""}, ensure_ascii=False))
     return 0
 
